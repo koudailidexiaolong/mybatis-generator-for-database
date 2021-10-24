@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+	<!-- mybatis 配置文件 create by julong  -->
+<generatorConfiguration>
+
+	<!--
+		JDBC 驱动路径 jar 如果已经将驱动包加入项目中 可以不用此段配置 此处可以使绝对路径，也可以是相对路径
+		<classPathEntry location="./lib/classes12.jar" />
+	-->
+	<!--
+		targetRuntime 属性解释 官方给出了几种配置 MyBatis3 生成 待条件的增删该查 MyBatis3Simple
+		生成最基本的增删该查操作 Ibatis2Java2 针对ibatis Ibatis2Java5 针对ibatis
+	-->
+	<context id="mssql" targetRuntime="MyBatis3">
+		<!-- 是否包含注释  true 包含-->
+		<commentGenerator>
+			<!-- 是否所有的注释生成 
+			<property name="suppressAllComments" value="true" />-->
+			<!-- 注释是否增加日期 
+			<property name="suppressDate" value="true" />-->
+			<!-- 是否生成默认注释  
+			<property name="suppressDefaultDesc" value="true" />-->
+			<!-- XML注释  是否不生成  false 为 生成 true 为 跳过不生成-->
+			<property name="suppressXMLComments" value="true" />
+			<!-- 生成的方法中是否不增加 注释  -->
+			<property name="suppressMethodComments" value="true" />
+		</commentGenerator>
+		
+		<!--配置数据库连接  -->
+		<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+			connectionURL="jdbc:sqlserver://127.0.0.1:1433;DatabaseName=julong" password="julong"
+			userId="sa">
+			 <!-- 针对oracle数据库 -->
+            <property name="remarksReporting" value="true"></property>
+		</jdbcConnection>
+		<!--
+			java类型处理器 用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
+			注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型；
+		-->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!--
+			去除数据库中生成bean的相同前缀字符 <columnRenamingRule searchString="^CUST_"
+			replaceString="" />
+		-->
+
+		<!--
+			生成的entity -->
+
+		<javaModelGenerator targetPackage="com.julong.market.dao.entity"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 生成的mapper -->
+		<sqlMapGenerator targetPackage="com.julong.market.dao.mapper"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!--
+			生成的dao <javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.julongtech.dao" targetProject="src/main/java"> <property
+			name="enableSubPackages" value="true" /> </javaClientGenerator>
+		-->
+		<!-- 需要生成的表 -->
+		<!--  如果为false(默认值)，MGB将会尝试将返回的名称转换为驼峰形式  -->
+		<!--
+			选择一个table来生成相关文件，可以有一个或多个table，必须要有table元素 <table
+			tableName="LOGIN_RESOURCE_T" domainObjectName="LoginResourceInfo"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false" > <property
+			name="useActualColumnNames" value="false"/> <property
+			name="useColumnIndexes" value="true"/> </table>
+		-->
+
+	 	<table  tableName="jgjbqk" domainObjectName="JGJBQKInfo"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+			<property name="useColumnIndexes" value="true" />
+		</table>
+		<!-- <table  tableName="enterprise_check" domainObjectName="EnterpriseCheckInfo"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+			<property name="useColumnIndexes" value="true" />
+		</table>
+		 -->
+	</context>
+</generatorConfiguration>
