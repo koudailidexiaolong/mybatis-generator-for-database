@@ -1,17 +1,17 @@
-/*
- *  Copyright 2009 The Apache Software Foundation
+/**
+ *    Copyright 2006-2016 the original author or authors.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 package org.mybatis.generator.codegen.mybatis3.xmlmapper.elements;
 
@@ -28,8 +28,7 @@ import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
  * @author Jeff Butler
  * 
  */
-public class SelectByPrimaryKeyElementGenerator extends
-        AbstractXmlElementGenerator {
+public class SelectByPrimaryKeyElementGenerator extends AbstractXmlElementGenerator {
 
     public SelectByPrimaryKeyElementGenerator() {
         super();
@@ -37,11 +36,9 @@ public class SelectByPrimaryKeyElementGenerator extends
 
     @Override
     public void addElements(XmlElement parentElement) {
-    	//创建 select 标签
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
-        //获取编号ID
+
         answer.addAttribute(new Attribute("id", introspectedTable.getSelectByPrimaryKeyStatementId())); //$NON-NLS-1$
-        //校验是否存在大字段
         if (introspectedTable.getRules().generateResultMapWithBLOBs()) {
             answer.addAttribute(new Attribute("resultMap", //$NON-NLS-1$
                     introspectedTable.getResultMapWithBLOBsId()));
@@ -49,7 +46,7 @@ public class SelectByPrimaryKeyElementGenerator extends
             answer.addAttribute(new Attribute("resultMap", //$NON-NLS-1$
                     introspectedTable.getBaseResultMapId()));
         }
-        //输入参数
+
         String parameterType;
         if (introspectedTable.getRules().generatePrimaryKeyClass()) {
             parameterType = introspectedTable.getPrimaryKeyType();
@@ -59,7 +56,8 @@ public class SelectByPrimaryKeyElementGenerator extends
             if (introspectedTable.getPrimaryKeyColumns().size() > 1) {
                 parameterType = "map"; //$NON-NLS-1$
             } else {
-                parameterType = introspectedTable.getPrimaryKeyColumns().get(0).getFullyQualifiedJavaType().toString();
+                parameterType = introspectedTable.getPrimaryKeyColumns().get(0)
+                        .getFullyQualifiedJavaType().toString();
             }
         }
 
@@ -89,7 +87,8 @@ public class SelectByPrimaryKeyElementGenerator extends
         answer.addElement(new TextElement(sb.toString()));
 
         boolean and = false;
-        for (IntrospectedColumn introspectedColumn : introspectedTable.getPrimaryKeyColumns()) {
+        for (IntrospectedColumn introspectedColumn : introspectedTable
+                .getPrimaryKeyColumns()) {
             sb.setLength(0);
             if (and) {
                 sb.append("  and "); //$NON-NLS-1$

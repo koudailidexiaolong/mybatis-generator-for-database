@@ -1,17 +1,17 @@
-/*
- *  Copyright 2012 The MyBatis Team
+/**
+ *    Copyright 2006-2016 the original author or authors.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 package org.mybatis.generator.codegen.mybatis3.xmlmapper;
 
@@ -27,7 +27,6 @@ import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.AbstractXmlElem
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.DeleteByPrimaryKeyElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.InsertElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ResultMapWithoutBLOBsElementGenerator;
-import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectBySelectiveElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SimpleSelectAllElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SimpleSelectByPrimaryKeyElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByPrimaryKeyWithoutBLOBsElementGenerator;
@@ -59,7 +58,7 @@ public class SimpleXMLMapperGenerator extends AbstractXmlGenerator {
         addUpdateByPrimaryKeyElement(answer);
         addSelectByPrimaryKeyElement(answer);
         addSelectAllElement(answer);
-        addSelectBySelectiveElement(answer);
+
         return answer;
     }
 
@@ -81,11 +80,6 @@ public class SimpleXMLMapperGenerator extends AbstractXmlGenerator {
     protected void addSelectAllElement(XmlElement parentElement) {
         AbstractXmlElementGenerator elementGenerator = new SimpleSelectAllElementGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
-    }
-    
-    protected void addSelectBySelectiveElement(XmlElement parentElement) {
-    	AbstractXmlElementGenerator elementGenerator = new SelectBySelectiveElementGenerator();
-    	initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
     protected void addDeleteByPrimaryKeyElement(XmlElement parentElement) {

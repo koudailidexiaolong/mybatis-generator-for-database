@@ -1,19 +1,18 @@
-/*
- *  Copyright 2009 The Apache Software Foundation
+/**
+ *    Copyright 2006-2017 the original author or authors.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
-
 package org.mybatis.generator.codegen.mybatis3.javamapper;
 
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
@@ -38,7 +37,8 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.InsertSelectiv
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByExampleWithBLOBsMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByExampleWithoutBLOBsMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByPrimaryKeyMethodGenerator;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectBySelectiveMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectBySelectiveParametersMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectCountBySelectiveMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByExampleSelectiveMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByExampleWithBLOBsMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByExampleWithoutBLOBsMethodGenerator;
@@ -54,9 +54,6 @@ import org.mybatis.generator.config.PropertyRegistry;
  */
 public class JavaMapperGenerator extends AbstractJavaClientGenerator {
 
-    /**
-     * 
-     */
     public JavaMapperGenerator() {
         super(true);
     }
@@ -64,33 +61,29 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
     public JavaMapperGenerator(boolean requiresMatchedXMLGenerator) {
         super(requiresMatchedXMLGenerator);
     }
-    
+
     @Override
     public List<CompilationUnit> getCompilationUnits() {
         progressCallback.startTask(getString("Progress.17", //$NON-NLS-1$
                 introspectedTable.getFullyQualifiedTable().toString()));
         CommentGenerator commentGenerator = context.getCommentGenerator();
 
-        FullyQualifiedJavaType type = new FullyQualifiedJavaType(
-                introspectedTable.getMyBatis3JavaMapperType());
+        FullyQualifiedJavaType type = new FullyQualifiedJavaType(introspectedTable.getMyBatis3JavaMapperType());
         Interface interfaze = new Interface(type);
         interfaze.setVisibility(JavaVisibility.PUBLIC);
         commentGenerator.addJavaFileComment(interfaze);
 
-        String rootInterface = introspectedTable
-            .getTableConfigurationProperty(PropertyRegistry.ANY_ROOT_INTERFACE);
+        String rootInterface = introspectedTable.getTableConfigurationProperty(PropertyRegistry.ANY_ROOT_INTERFACE);
         if (!stringHasValue(rootInterface)) {
-            rootInterface = context.getJavaClientGeneratorConfiguration()
-                .getProperty(PropertyRegistry.ANY_ROOT_INTERFACE);
+            rootInterface = context.getJavaClientGeneratorConfiguration().getProperty(PropertyRegistry.ANY_ROOT_INTERFACE);
         }
 
         if (stringHasValue(rootInterface)) {
-            FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(
-                    rootInterface);
+            FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(rootInterface);
             interfaze.addSuperInterface(fqjt);
             interfaze.addImportedType(fqjt);
         }
-        
+
         addCountByExampleMethod(interfaze);
         addDeleteByExampleMethod(interfaze);
         addDeleteByPrimaryKeyMethod(interfaze);
@@ -99,7 +92,10 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         addSelectByExampleWithBLOBsMethod(interfaze);
         addSelectByExampleWithoutBLOBsMethod(interfaze);
         addSelectByPrimaryKeyMethod(interfaze);
-        addSelectBySelectiveMethod(interfaze);
+        //自定义方法 
+        addSelectBySelectiveParametersMethod(interfaze);
+        addSelectCountBySelectiveMethod(interfaze);
+        
         addUpdateByExampleSelectiveMethod(interfaze);
         addUpdateByExampleWithBLOBsMethod(interfaze);
         addUpdateByExampleWithoutBLOBsMethod(interfaze);
@@ -108,11 +104,10 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         addUpdateByPrimaryKeyWithoutBLOBsMethod(interfaze);
 
         List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
-        if (context.getPlugins().clientGenerated(interfaze, null,
-                introspectedTable)) {
+        if (context.getPlugins().clientGenerated(interfaze, null,introspectedTable)) {
             answer.add(interfaze);
         }
-        
+
         List<CompilationUnit> extraCompilationUnits = getExtraCompilationUnits();
         if (extraCompilationUnits != null) {
             answer.addAll(extraCompilationUnits);
@@ -176,9 +171,16 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
     }
-    protected void addSelectBySelectiveMethod(Interface interfaze) {
-    	if (introspectedTable.getRules().generateSelectBySelective()) {
-    		AbstractJavaMapperMethodGenerator methodGenerator = new SelectBySelectiveMethodGenerator(true);
+    protected void addSelectBySelectiveParametersMethod(Interface interfaze) {
+    	//校验是否有权限创建此方法
+    	if (introspectedTable.getRules().generateSelectBySelectiveParameters()) {
+    		AbstractJavaMapperMethodGenerator methodGenerator = new SelectBySelectiveParametersMethodGenerator();
+    		initializeAndExecuteGenerator(methodGenerator, interfaze);
+    	}
+    }
+    protected void addSelectCountBySelectiveMethod(Interface interfaze) {
+    	if (introspectedTable.getRules().generateSelectCountBySelective()) {
+    		AbstractJavaMapperMethodGenerator methodGenerator = new SelectCountBySelectiveMethodGenerator();
     		initializeAndExecuteGenerator(methodGenerator, interfaze);
     	}
     }

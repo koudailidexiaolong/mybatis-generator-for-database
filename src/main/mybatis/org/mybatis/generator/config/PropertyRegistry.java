@@ -1,19 +1,18 @@
-/*
- *  Copyright 2006 The Apache Software Foundation
+/**
+ *    Copyright 2006-2018 the original author or authors.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
-
 package org.mybatis.generator.config;
 
 /**
@@ -41,6 +40,7 @@ public class PropertyRegistry {
 
     public static final String TABLE_USE_COLUMN_INDEXES = "useColumnIndexes"; //$NON-NLS-1$
     public static final String TABLE_USE_ACTUAL_COLUMN_NAMES = "useActualColumnNames"; //$NON-NLS-1$
+    
     public static final String TABLE_USE_COMPOUND_PROPERTY_NAMES = "useCompoundPropertyNames"; //$NON-NLS-1$
     public static final String TABLE_IGNORE_QUALIFIERS_AT_RUNTIME = "ignoreQualifiersAtRuntime"; //$NON-NLS-1$
     public static final String TABLE_RUNTIME_CATALOG = "runtimeCatalog"; //$NON-NLS-1$
@@ -56,13 +56,32 @@ public class PropertyRegistry {
     public static final String CONTEXT_JAVA_FORMATTER = "javaFormatter"; //$NON-NLS-1$
     public static final String CONTEXT_XML_FORMATTER = "xmlFormatter"; //$NON-NLS-1$
 
+    public static final String CLIENT_USE_LEGACY_BUILDER = "useLegacyBuilder"; //$NON-NLS-1$
+    
     public static final String DAO_EXAMPLE_METHOD_VISIBILITY = "exampleMethodVisibility"; //$NON-NLS-1$
     public static final String DAO_METHOD_NAME_CALCULATOR = "methodNameCalculator"; //$NON-NLS-1$
 
     public static final String TYPE_RESOLVER_FORCE_BIG_DECIMALS = "forceBigDecimals"; //$NON-NLS-1$
-
+    public static final String TYPE_RESOLVER_USE_JSR310_TYPES = "useJSR310Types"; //$NON-NLS-1$
+    /**
+     * trimStrings 方法
+     * @author julong
+     * @date 2021年10月24日 下午6:59:40
+     */
     public static final String MODEL_GENERATOR_TRIM_STRINGS = "trimStrings"; //$NON-NLS-1$
 
+    /**
+     * 增加字段描述注释
+     * @author julong
+     * @date 2021年10月25日 下午12:22:46
+     */
+    public static final String COMMENT_GENERATOR_ADD_REMARK_COMMENTS = "addRemarkComments"; //$NON-NLS-1$
+    /**
+     * 格式化日期注释 可以通过配置文件配置
+     * @author julong
+     * @date 2021年10月25日 下午12:21:47
+     */
+    public static final String COMMENT_GENERATOR_DATE_FORMAT = "dateFormat"; //$NON-NLS-1$
     /**
      * 是否增加时间注释
      * @author julong
@@ -94,4 +113,5 @@ public class PropertyRegistry {
      * @date 2021年10月21日 下午1:23:14
      */
     public static final String COMMENT_GENERATOR_SUPPRESS_METHOD_COMMENTS = "suppressMethodComments"; //$NON-NLS-1$
+
 }

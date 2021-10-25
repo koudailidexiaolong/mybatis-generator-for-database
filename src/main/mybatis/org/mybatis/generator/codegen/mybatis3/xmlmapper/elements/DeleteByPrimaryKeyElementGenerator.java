@@ -1,17 +1,17 @@
-/*
- *  Copyright 2009 The Apache Software Foundation
+/**
+ *    Copyright 2006-2017 the original author or authors.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 package org.mybatis.generator.codegen.mybatis3.xmlmapper.elements;
 
@@ -26,10 +26,11 @@ import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
  * @author Jeff Butler
  * 
  */
-public class DeleteByPrimaryKeyElementGenerator extends AbstractXmlElementGenerator {
+public class DeleteByPrimaryKeyElementGenerator extends
+        AbstractXmlElementGenerator {
 
     private boolean isSimple;
-    
+
     public DeleteByPrimaryKeyElementGenerator(boolean isSimple) {
         super();
         this.isSimple = isSimple;
@@ -39,7 +40,8 @@ public class DeleteByPrimaryKeyElementGenerator extends AbstractXmlElementGenera
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("delete"); //$NON-NLS-1$
 
-        answer.addAttribute(new Attribute("id", introspectedTable.getDeleteByPrimaryKeyStatementId())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute(
+                "id", introspectedTable.getDeleteByPrimaryKeyStatementId())); //$NON-NLS-1$
         String parameterClass;
         if (!isSimple && introspectedTable.getRules().generatePrimaryKeyClass()) {
             parameterClass = introspectedTable.getPrimaryKeyType();
@@ -49,7 +51,8 @@ public class DeleteByPrimaryKeyElementGenerator extends AbstractXmlElementGenera
             if (introspectedTable.getPrimaryKeyColumns().size() > 1) {
                 parameterClass = "map"; //$NON-NLS-1$
             } else {
-                parameterClass = introspectedTable.getPrimaryKeyColumns().get(0).getFullyQualifiedJavaType().toString();
+                parameterClass = introspectedTable.getPrimaryKeyColumns()
+                        .get(0).getFullyQualifiedJavaType().toString();
             }
         }
         answer.addAttribute(new Attribute("parameterType", //$NON-NLS-1$
@@ -63,7 +66,8 @@ public class DeleteByPrimaryKeyElementGenerator extends AbstractXmlElementGenera
         answer.addElement(new TextElement(sb.toString()));
 
         boolean and = false;
-        for (IntrospectedColumn introspectedColumn : introspectedTable.getPrimaryKeyColumns()) {
+        for (IntrospectedColumn introspectedColumn : introspectedTable
+                .getPrimaryKeyColumns()) {
             sb.setLength(0);
             if (and) {
                 sb.append("  and "); //$NON-NLS-1$

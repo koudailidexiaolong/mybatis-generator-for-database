@@ -1,17 +1,17 @@
-/*
- *  Copyright 2006 The Apache Software Foundation
+/**
+ *    Copyright 2006-2017 the original author or authors.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 package org.mybatis.generator.internal.rules;
 
@@ -31,7 +31,7 @@ public interface Rules {
      * Implements the rule for generating the insert SQL Map element and DAO
      * method. If the insert statement is allowed, then generate the element and
      * method.
-     * 
+     * 新增方法
      * @return true if the element and method should be generated
      */
     boolean generateInsert();
@@ -40,7 +40,7 @@ public interface Rules {
      * Implements the rule for generating the insert selective SQL Map element
      * and DAO method. If the insert statement is allowed, then generate the
      * element and method.
-     * 
+     * 选择性新增的方法
      * @return true if the element and method should be generated
      */
     boolean generateInsertSelective();
@@ -60,7 +60,7 @@ public interface Rules {
      * BLOBs SQL Map element and DAO method. If the table has a primary key as
      * well as other non-BLOB fields, and the updateByPrimaryKey statement is
      * allowed, then generate the element and method.
-     * 
+     * 根据主键更新的方法-不包含大字段类型
      * @return true if the element and method should be generated
      */
     boolean generateUpdateByPrimaryKeyWithoutBLOBs();
@@ -70,7 +70,7 @@ public interface Rules {
      * SQL Map element and DAO method. If the table has a primary key as well as
      * other BLOB fields, and the updateByPrimaryKey statement is allowed, then
      * generate the element and method.
-     * 
+     * 根据主键更新的方法-包含大字段类型
      * @return true if the element and method should be generated
      */
     boolean generateUpdateByPrimaryKeyWithBLOBs();
@@ -80,7 +80,7 @@ public interface Rules {
      * SQL Map element and DAO method. If the table has a primary key as well as
      * other fields, and the updateByPrimaryKey statement is allowed, then
      * generate the element and method.
-     * 
+     * 根据主键更新的方法
      * @return true if the element and method should be generated
      */
     boolean generateUpdateByPrimaryKeySelective();
@@ -90,7 +90,7 @@ public interface Rules {
      * element and DAO method. If the table has a primary key, and the
      * deleteByPrimaryKey statement is allowed, then generate the element and
      * method.
-     * 
+     * 根据主键删除的方法
      * @return true if the element and method should be generated
      */
     boolean generateDeleteByPrimaryKey();
@@ -107,7 +107,7 @@ public interface Rules {
     /**
      * Implements the rule for generating the result map without BLOBs. If
      * either select method is allowed, then generate the result map.
-     * 
+     * 返回的对象映射
      * @return true if the result map should be generated
      */
     boolean generateBaseResultMap();
@@ -116,7 +116,7 @@ public interface Rules {
      * Implements the rule for generating the result map with BLOBs. If the
      * table has BLOB columns, and either select method is allowed, then
      * generate the result map.
-     * 
+     * 返回的对象映射-大字段
      * @return true if the result map should be generated
      */
     boolean generateResultMapWithBLOBs();
@@ -124,10 +124,10 @@ public interface Rules {
     /**
      * Implements the rule for generating the SQL example where clause element.
      * 
-     * In iBATIS2, generate the element if the selectByExample, deleteByExample,
+     * <p>In iBATIS2, generate the element if the selectByExample, deleteByExample,
      * updateByExample, or countByExample statements are allowed.
      * 
-     * In MyBatis3, generate the element if the selectByExample,
+     * <p>In MyBatis3, generate the element if the selectByExample,
      * deleteByExample, or countByExample statements are allowed.
      * 
      * @return true if the SQL where clause element should be generated
@@ -138,9 +138,9 @@ public interface Rules {
      * Implements the rule for generating the SQL example where clause element
      * specifically for use in the update by example methods.
      * 
-     * In iBATIS2, do not generate the element.
+     * <p>In iBATIS2, do not generate the element.
      * 
-     * In MyBatis, generate the element if the updateByExample statements are
+     * <p>In MyBatis, generate the element if the updateByExample statements are
      * allowed.
      * 
      * @return true if the SQL where clause element should be generated
@@ -174,7 +174,26 @@ public interface Rules {
      */
     boolean generateSelectByPrimaryKey();
     
-    boolean generateSelectBySelective();
+    /**
+     * 自定义查询方法
+     * Implements the rule for generating the select by primary key SQL Map
+     * element and DAO method. If the table has a primary key as well as other
+     * fields, and the selectByPrimaryKey statement is allowed, then generate
+     * the element and method.
+     * 
+     * @return true if the element and method should be generated
+     */
+    boolean generateSelectBySelectiveParameters();
+    /**
+     * 自定义查询总数方法
+     * Implements the rule for generating the select by primary key SQL Map
+     * element and DAO method. If the table has a primary key as well as other
+     * fields, and the selectByPrimaryKey statement is allowed, then generate
+     * the element and method.
+     * 
+     * @return true if the element and method should be generated
+     */
+    boolean generateSelectCountBySelective();
 
     /**
      * Implements the rule for generating the select by example without BLOBs
@@ -237,7 +256,7 @@ public interface Rules {
      * @return true if the record with BLOBs class should be generated
      */
     boolean generateRecordWithBLOBsClass();
-    
+
     /**
      * Implements the rule for generating a Java client.  This rule is
      * only active when a javaClientGenerator configuration has been
