@@ -1,15 +1,15 @@
 # mybatis-generator-for-database
 mybatis-generator-for-database xml生成工具
 
-基于源码版本 1.3.2 
+基于mybatis-generator1.3.7版本扩展 JDK最低版本 1.8
 
-### 2021-10-24
+### 2021-10-25
 
 修改点：
 
  	1. 增加xml和java类中生成的注释 
  	2. 增加get、set 方法生成基于数据库字段中文描述注释
- 	3. 增加通用查询方法 selectBySelective 
+ 	3. 增加通用查询方法 selectBySelectiveParameters
  	4. 增加xml中 String 类型字段 字符串判断是否为空问题
 
 
@@ -20,18 +20,22 @@ mybatis-generator-for-database xml生成工具
 
 ```xml
 
+<!-- 是否包含注释  true 包含-->
 <commentGenerator>
-    <!-- 是否所有的注释生成 
-   <property name="suppressAllComments" value="true" />-->
-    <!-- 注释是否增加日期 
-   <property name="suppressDate" value="true" />-->
-    <!-- 是否生成默认注释  
-   <property name="suppressDefaultDesc" value="true" />-->
-    以下两个为自定义属性配置
-    <!-- XML注释  是否不生成  false 为 生成 true 为 跳过不生成-->
+    <!-- 是否阻止所有的注释生成 -->
+    <property name="suppressAllComments" value="false" />
+    <!-- 是否阻止增加日期注释 -->
+    <property name="suppressDate" value="true" />
+    <!-- 是否阻止生成默认注释 自定义 -->
+    <property name="suppressDefaultDesc" value="true" />
+    <!-- XML注释  是否不生成  false 为 生成 true 为 跳过不生成 自定义-->
     <property name="suppressXMLComments" value="true" />
-    <!-- 生成的方法中是否不增加 注释  -->
+    <!-- 生成的方法中是否增加注释 自定义  -->
     <property name="suppressMethodComments" value="true" />
+    <!-- 格式化生成日期注释 版本新增配置 -->
+    <property name="dateFormat" value="yyyy-MM-dd hh:mm:ss"/>
+    <!-- 是否在类中增加注释 版本新增配置 -->
+    <property name="addRemarkComments" value="true"></property>
 </commentGenerator>
 ```
 
@@ -76,7 +80,7 @@ mybatis-generator-for-database xml生成工具
 
 
 
-#### 3. 增加通用查询方法 selectBySelective
+#### 3. 增加通用查询方法 selectBySelectiveParameters
 
 默认的配置文件中只有 以下方法
 
@@ -96,6 +100,29 @@ mybatis-generator-for-database xml生成工具
     <include refid="Base_Column_List" />
     from system_user
     where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+     <!-- 新增方法 -->
+    <select id="selectBySelectiveParameters" parameterType="com.julong.market.dao.entity.SystemUserInfo" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from system_user
+    <where>
+      <if test="userId != null and userId != '' ">
+         AND user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+    <!-- 新增方法 -->
+     <select id="selectCountBySelective" parameterType="com.julong.market.dao.entity.SystemUserInfo" resultType="java.lang.Integer">
+    select 
+     count(*) 
+    from system_user
+    <where>
+      <if test="userId != null and userId != '' ">
+         AND user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+
+    </where>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from system_user
@@ -156,6 +183,32 @@ mybatis-generator-for-database xml生成工具
   </select>
 </mapper>
 
+```
+
+对应的XXXdao.java
+
+```java
+package com.julong.market.dao;
+
+import com.julong.market.dao.entity.SystemUserInfo;
+
+public interface SystemUserMapper {
+    public abstract int deleteByPrimaryKey(String userId);
+
+    public abstract int insert(SystemUserInfo record);
+
+    public abstract int insertSelective(SystemUserInfo record);
+
+    public abstract SystemUserInfo selectByPrimaryKey(String userId);
+
+    public abstract SystemUserInfo selectBySelectiveParameters(SystemUserInfo record);
+
+    public abstract int selectCountBySelective(SystemUserInfo record);
+
+    public abstract int updateByPrimaryKeySelective(SystemUserInfo record);
+
+    public abstract int updateByPrimaryKey(SystemUserInfo record);
+}
 ```
 
 
