@@ -36,8 +36,8 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.InsertMethodGe
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.InsertSelectiveMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByExampleWithBLOBsMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByExampleWithoutBLOBsMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByParametersSelectiveMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByPrimaryKeyMethodGenerator;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectBySelectiveParametersMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectCountBySelectiveMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByExampleSelectiveMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByExampleWithBLOBsMethodGenerator;
@@ -93,7 +93,9 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         addSelectByExampleWithoutBLOBsMethod(interfaze);
         addSelectByPrimaryKeyMethod(interfaze);
         //自定义方法 
-        addSelectBySelectiveParametersMethod(interfaze);
+        //TODO 自定义查询列表方法 SelectByParametersSelective
+        addSelectByParametersSelectiveMethod(interfaze);
+        //TODO 自定义查询总数方法 SelectCountBySelective
         addSelectCountBySelectiveMethod(interfaze);
         
         addUpdateByExampleSelectiveMethod(interfaze);
@@ -171,10 +173,10 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
     }
-    protected void addSelectBySelectiveParametersMethod(Interface interfaze) {
+    protected void addSelectByParametersSelectiveMethod(Interface interfaze) {
     	//校验是否有权限创建此方法
-    	if (introspectedTable.getRules().generateSelectBySelectiveParameters()) {
-    		AbstractJavaMapperMethodGenerator methodGenerator = new SelectBySelectiveParametersMethodGenerator();
+    	if (introspectedTable.getRules().generateSelectByParametersSelective()) {
+    		AbstractJavaMapperMethodGenerator methodGenerator = new SelectByParametersSelectiveMethodGenerator();
     		initializeAndExecuteGenerator(methodGenerator, interfaze);
     	}
     }
@@ -228,9 +230,7 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         }
     }
 
-    protected void initializeAndExecuteGenerator(
-            AbstractJavaMapperMethodGenerator methodGenerator,
-            Interface interfaze) {
+    protected void initializeAndExecuteGenerator(AbstractJavaMapperMethodGenerator methodGenerator,Interface interfaze) {
         methodGenerator.setContext(context);
         methodGenerator.setIntrospectedTable(introspectedTable);
         methodGenerator.setProgressCallback(progressCallback);

@@ -648,13 +648,13 @@ public interface Plugin {
      *         first plugin returning false will disable the calling of further
      *         plugins.
      */
-    boolean clientSelectBySelectiveParametersMethodGenerated(Method method,Interface interfaze, IntrospectedTable introspectedTable);
+    boolean clientSelectByParametersSelectiveMethodGenerated(Method method,Interface interfaze, IntrospectedTable introspectedTable);
     /**
-     * This method is called when the selectBySelectiveParameters method has been
+     * This method is called when the selectByParametersSelective method has been
      * generated in the client implementation class.
      * 
      * @param method
-     *            the generated selectBySelectiveParameters method
+     *            the generated selectByParametersSelective method
      * @param topLevelClass
      *            the partially implemented client implementation class. You can
      *            add additional imported classes to the implementation class if
@@ -667,7 +667,7 @@ public interface Plugin {
      *         first plugin returning false will disable the calling of further
      *         plugins.
      */
-    boolean clientSelectBySelectiveParametersMethodGenerated(Method method,TopLevelClass topLevelClass, IntrospectedTable introspectedTable);
+    boolean clientSelectByParametersSelectiveMethodGenerated(Method method,TopLevelClass topLevelClass, IntrospectedTable introspectedTable);
     /**
      * This method is called when the selectCountBySelective method has been
      * generated in the client interface.
@@ -1398,7 +1398,7 @@ public interface Plugin {
      * @date 2021年10月25日 下午1:35:18
      * @desc
      */
-    boolean sqlMapSelectBySelectiveParametersElementGenerated(XmlElement element,IntrospectedTable introspectedTable);
+    boolean sqlMapSelectByParametersSelectiveElementGenerated(XmlElement element,IntrospectedTable introspectedTable);
     
     /**
      * 条件查询总数

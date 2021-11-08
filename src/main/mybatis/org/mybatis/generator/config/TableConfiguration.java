@@ -146,6 +146,14 @@ public class TableConfiguration extends PropertyHolder {
         this.updateByPrimaryKeyStatementEnabled = updateByPrimaryKeyStatementEnabled;
     }
 
+    /**
+     * 忽略字段的方法
+     * @param columnName
+     * @return
+     * @author julong
+     * @date 2021年10月26日 上午11:18:43
+     * @desc
+     */
     public boolean isColumnIgnored(String columnName) {
         for (Map.Entry<IgnoredColumn, Boolean> entry : ignoredColumns
                 .entrySet()) {
@@ -384,8 +392,7 @@ public class TableConfiguration extends PropertyHolder {
         }
 
         if (!selectByPrimaryKeyStatementEnabled) {
-            xmlElement.addAttribute(new Attribute(
-                    "enableSelectByPrimaryKey", "false")); //$NON-NLS-1$ //$NON-NLS-2$
+            xmlElement.addAttribute(new Attribute("enableSelectByPrimaryKey", "false")); //$NON-NLS-1$ //$NON-NLS-2$
         }
 
         if (!selectByExampleStatementEnabled) {
@@ -429,8 +436,7 @@ public class TableConfiguration extends PropertyHolder {
         }
 
         if (configuredModelType != null) {
-            xmlElement.addAttribute(new Attribute(
-                    "modelType", configuredModelType)); //$NON-NLS-1$
+            xmlElement.addAttribute(new Attribute("modelType", configuredModelType)); //$NON-NLS-1$
         }
 
         if (wildcardEscapingEnabled) {
@@ -442,18 +448,15 @@ public class TableConfiguration extends PropertyHolder {
         }
 
         if (delimitIdentifiers) {
-            xmlElement
-                    .addAttribute(new Attribute("delimitIdentifiers", "true")); //$NON-NLS-1$ //$NON-NLS-2$
+            xmlElement.addAttribute(new Attribute("delimitIdentifiers", "true")); //$NON-NLS-1$ //$NON-NLS-2$
         }
 
         if (stringHasValue(mapperName)) {
-            xmlElement.addAttribute(new Attribute(
-                    "mapperName", mapperName)); //$NON-NLS-1$
+            xmlElement.addAttribute(new Attribute("mapperName", mapperName)); //$NON-NLS-1$
         }
 
         if (stringHasValue(sqlProviderName)) {
-            xmlElement.addAttribute(new Attribute(
-                    "sqlProviderName", sqlProviderName)); //$NON-NLS-1$
+            xmlElement.addAttribute(new Attribute("sqlProviderName", sqlProviderName)); //$NON-NLS-1$
         }
 
         addPropertyXmlElements(xmlElement);

@@ -183,7 +183,7 @@ public interface Rules {
      * 
      * @return true if the element and method should be generated
      */
-    boolean generateSelectBySelectiveParameters();
+    boolean generateSelectByParametersSelective();
     /**
      * 自定义查询总数方法
      * Implements the rule for generating the select by primary key SQL Map

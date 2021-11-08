@@ -213,12 +213,12 @@ public abstract class PluginAdapter implements Plugin {
     }
     
     @Override
-    public boolean clientSelectBySelectiveParametersMethodGenerated(Method method,Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientSelectByParametersSelectiveMethodGenerated(Method method,Interface interfaze, IntrospectedTable introspectedTable) {
         return true;
     }
     
     @Override
-    public boolean clientSelectBySelectiveParametersMethodGenerated(Method method,TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean clientSelectByParametersSelectiveMethodGenerated(Method method,TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         return true;
     }
     
@@ -426,7 +426,7 @@ public abstract class PluginAdapter implements Plugin {
         return true;
     }
     @Override
-    public boolean sqlMapSelectBySelectiveParametersElementGenerated(XmlElement element,
+    public boolean sqlMapSelectByParametersSelectiveElementGenerated(XmlElement element,
     		IntrospectedTable introspectedTable) {
     	return true;
     }

@@ -34,10 +34,10 @@ import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
  * @date 2021年10月25日 下午1:28:55
  * @desc 
  */
-public class SelectBySelectiveParametersElementGenerator extends AbstractXmlElementGenerator {
+public class SelectByParametersSelectiveElementGenerator extends AbstractXmlElementGenerator {
 
 	
-    public SelectBySelectiveParametersElementGenerator() {
+    public SelectByParametersSelectiveElementGenerator() {
         super();
     }
 
@@ -46,7 +46,7 @@ public class SelectBySelectiveParametersElementGenerator extends AbstractXmlElem
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
 
-        answer.addAttribute(new Attribute("id", introspectedTable.getSelectBySelectiveParametersStatementId())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute("id", introspectedTable.getSelectByParametersSelectiveStatementId())); //$NON-NLS-1$
         if (introspectedTable.getRules().generateResultMapWithBLOBs()) {
             answer.addAttribute(new Attribute("resultMap", //$NON-NLS-1$
                     introspectedTable.getResultMapWithBLOBsId()));
@@ -112,7 +112,7 @@ public class SelectBySelectiveParametersElementGenerator extends AbstractXmlElem
 			isNotNullElement.addElement(new TextElement(sb.toString()));
 		}
 
-        if (context.getPlugins().sqlMapSelectBySelectiveParametersElementGenerated(answer,introspectedTable)) {
+        if (context.getPlugins().sqlMapSelectByParametersSelectiveElementGenerated(answer,introspectedTable)) {
             parentElement.addElement(answer);
         }
     }

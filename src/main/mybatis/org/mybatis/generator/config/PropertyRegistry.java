@@ -41,6 +41,15 @@ public class PropertyRegistry {
     public static final String TABLE_USE_COLUMN_INDEXES = "useColumnIndexes"; //$NON-NLS-1$
     public static final String TABLE_USE_ACTUAL_COLUMN_NAMES = "useActualColumnNames"; //$NON-NLS-1$
     
+    /**
+     * xml文件中是否判断空字符串
+     * @author julong
+     * @date 2021年10月26日 上午11:01:36
+     */
+    public static final String XML_MAPPER_APPEND_EMPTY_STRING = "XmlMapperAppendEmptyString"; //$NON-NLS-1$
+
+    
+    
     public static final String TABLE_USE_COMPOUND_PROPERTY_NAMES = "useCompoundPropertyNames"; //$NON-NLS-1$
     public static final String TABLE_IGNORE_QUALIFIERS_AT_RUNTIME = "ignoreQualifiersAtRuntime"; //$NON-NLS-1$
     public static final String TABLE_RUNTIME_CATALOG = "runtimeCatalog"; //$NON-NLS-1$
@@ -52,6 +61,11 @@ public class PropertyRegistry {
     public static final String CONTEXT_BEGINNING_DELIMITER = "beginningDelimiter"; //$NON-NLS-1$
     public static final String CONTEXT_ENDING_DELIMITER = "endingDelimiter"; //$NON-NLS-1$
     public static final String CONTEXT_AUTO_DELIMIT_KEYWORDS = "autoDelimitKeywords"; //$NON-NLS-1$
+    /**
+     * 文件编码
+     * @author julong
+     * @date 2021年10月25日 下午8:24:40
+     */
     public static final String CONTEXT_JAVA_FILE_ENCODING = "javaFileEncoding"; //$NON-NLS-1$
     public static final String CONTEXT_JAVA_FORMATTER = "javaFormatter"; //$NON-NLS-1$
     public static final String CONTEXT_XML_FORMATTER = "xmlFormatter"; //$NON-NLS-1$
@@ -113,5 +127,7 @@ public class PropertyRegistry {
      * @date 2021年10月21日 下午1:23:14
      */
     public static final String COMMENT_GENERATOR_SUPPRESS_METHOD_COMMENTS = "suppressMethodComments"; //$NON-NLS-1$
-
+    
+ 
+    
 }

@@ -82,8 +82,10 @@ public abstract class IntrospectedTable {
         ATTR_SELECT_BY_EXAMPLE_STATEMENT_ID,
         ATTR_SELECT_BY_EXAMPLE_WITH_BLOBS_STATEMENT_ID,
         ATTR_SELECT_BY_PRIMARY_KEY_STATEMENT_ID,
-        ATTR_SELECT_BY_SELECTIVE_PARAMETERS_STATEMENT_ID,
+        //TODO 自定义查询方法属性定义
+        ATTR_SELECT_BY_PARAMETERS_SELECTIVE_STATEMENT_ID,
         ATTR_SELECT_COUNT_BY_SELECTIVE_STATEMENT_ID,
+        
         ATTR_UPDATE_BY_EXAMPLE_STATEMENT_ID,
         ATTR_UPDATE_BY_EXAMPLE_SELECTIVE_STATEMENT_ID,
         ATTR_UPDATE_BY_EXAMPLE_WITH_BLOBS_STATEMENT_ID,
@@ -535,7 +537,7 @@ public abstract class IntrospectedTable {
         //自定义查询方法
         
         //条件查询
-        setSelectBySelectiveParametersStatementId("selectBySelectiveParameters"); //$NON-NLS-1$
+        setSelectByParametersSelectiveStatementId("selectByParametersSelective"); //$NON-NLS-1$
         setSelectCountBySelectiveStatementId("selectCountBySelective"); //$NON-NLS-1$
         
         
@@ -632,8 +634,8 @@ public abstract class IntrospectedTable {
      * @date 2021年10月25日 下午1:15:40
      * @desc
      */
-    public void setSelectBySelectiveParametersStatementId(String s) {
-    	internalAttributes.put(InternalAttribute.ATTR_SELECT_BY_SELECTIVE_PARAMETERS_STATEMENT_ID, s);
+    public void setSelectByParametersSelectiveStatementId(String s) {
+    	internalAttributes.put(InternalAttribute.ATTR_SELECT_BY_PARAMETERS_SELECTIVE_STATEMENT_ID, s);
     }
     /**
      * 根据条件查询总数
@@ -737,8 +739,8 @@ public abstract class IntrospectedTable {
      * @date 2021年10月25日 下午1:39:51
      * @desc
      */
-    public String getSelectBySelectiveParametersStatementId() {
-    	return internalAttributes.get(InternalAttribute.ATTR_SELECT_BY_SELECTIVE_PARAMETERS_STATEMENT_ID);
+    public String getSelectByParametersSelectiveStatementId() {
+    	return internalAttributes.get(InternalAttribute.ATTR_SELECT_BY_PARAMETERS_SELECTIVE_STATEMENT_ID);
     }
     
     /**

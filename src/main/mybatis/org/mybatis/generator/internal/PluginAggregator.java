@@ -343,11 +343,11 @@ public final class PluginAggregator implements Plugin {
         return rc;
     }
     @Override
-    public boolean sqlMapSelectBySelectiveParametersElementGenerated(XmlElement element,IntrospectedTable introspectedTable) {
+    public boolean sqlMapSelectByParametersSelectiveElementGenerated(XmlElement element,IntrospectedTable introspectedTable) {
     	boolean rc = true;
     	
     	for (Plugin plugin : plugins) {
-    		if (!plugin.sqlMapSelectBySelectiveParametersElementGenerated(element,
+    		if (!plugin.sqlMapSelectByParametersSelectiveElementGenerated(element,
     				introspectedTable)) {
     			rc = false;
     			break;
@@ -846,11 +846,11 @@ public final class PluginAggregator implements Plugin {
 
     //自定义方法
     @Override
-    public boolean clientSelectBySelectiveParametersMethodGenerated(Method method,Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientSelectByParametersSelectiveMethodGenerated(Method method,Interface interfaze, IntrospectedTable introspectedTable) {
         boolean rc = true;
 
         for (Plugin plugin : plugins) {
-            if (!plugin.clientSelectBySelectiveParametersMethodGenerated(method, interfaze,introspectedTable)) {
+            if (!plugin.clientSelectByParametersSelectiveMethodGenerated(method, interfaze,introspectedTable)) {
                 rc = false;
                 break;
             }
@@ -860,11 +860,11 @@ public final class PluginAggregator implements Plugin {
     }
 
     @Override
-    public boolean clientSelectBySelectiveParametersMethodGenerated(Method method,TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean clientSelectByParametersSelectiveMethodGenerated(Method method,TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         boolean rc = true;
 
         for (Plugin plugin : plugins) {
-            if (!plugin.clientSelectBySelectiveParametersMethodGenerated(method,topLevelClass, introspectedTable)) {
+            if (!plugin.clientSelectByParametersSelectiveMethodGenerated(method,topLevelClass, introspectedTable)) {
                 rc = false;
                 break;
             }

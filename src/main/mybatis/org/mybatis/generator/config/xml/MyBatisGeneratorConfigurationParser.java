@@ -592,8 +592,7 @@ public class MyBatisGeneratorConfigurationParser {
     protected void parseJavaModelGenerator(Context context, Node node) {
         JavaModelGeneratorConfiguration javaModelGeneratorConfiguration = new JavaModelGeneratorConfiguration();
 
-        context
-                .setJavaModelGeneratorConfiguration(javaModelGeneratorConfiguration);
+        context.setJavaModelGeneratorConfiguration(javaModelGeneratorConfiguration);
 
         Properties attributes = parseAttributes(node);
         String targetPackage = attributes.getProperty("targetPackage"); //$NON-NLS-1$

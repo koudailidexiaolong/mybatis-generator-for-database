@@ -25,15 +25,17 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
 /**
- * 
- * @author Jeff Butler
  * 根据条件查询总数
+ * 
+ * @author julong
+ * @date 2021年11月1日 下午8:20:09
+ * @desc
  */
 public class SelectCountBySelectiveMethodGenerator extends AbstractJavaMapperMethodGenerator {
 
     public SelectCountBySelectiveMethodGenerator() {
 		super();
-		// TODO Auto-generated constructor stub
+		// TODO 自定义查询总数的方法
 	}
 
 	@Override

@@ -25,38 +25,43 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
 /**
- * 
- * @author Jeff Butler
  * java 生成 条件查询的方法
+ * 
+ * @author julong
+ * @date 2021年11月1日 下午8:20:21
+ * @desc
  */
-public class SelectBySelectiveParametersMethodGenerator extends AbstractJavaMapperMethodGenerator {
+public class SelectByParametersSelectiveMethodGenerator extends AbstractJavaMapperMethodGenerator {
 
 
-    public SelectBySelectiveParametersMethodGenerator() {
+    public SelectByParametersSelectiveMethodGenerator() {
 		super();
-		// TODO Auto-generated constructor stub
+		// TODO 自定义查询列表方法 SelectByParametersSelective
 	}
 
     @Override
     public void addInterfaceElements(Interface interfaze) {
+    	
         Method method = new Method();
-
         method.setVisibility(JavaVisibility.PUBLIC);
-        FullyQualifiedJavaType returnType = introspectedTable.getRules().calculateAllFieldsClass();
+        FullyQualifiedJavaType returnType = FullyQualifiedJavaType.getNewListInstance();
+        FullyQualifiedJavaType listType = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
+        returnType.addTypeArgument(listType);
+        FullyQualifiedJavaType.getNewListInstance().addTypeArgument(returnType);
         method.setReturnType(returnType);
-        method.setName(introspectedTable.getSelectBySelectiveParametersStatementId());
+        method.setName(introspectedTable.getSelectByParametersSelectiveStatementId());
         
         FullyQualifiedJavaType parameterType = introspectedTable.getRules().calculateAllFieldsClass();
-
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
-        importedTypes.add(parameterType);
+        importedTypes.add(FullyQualifiedJavaType.getNewListInstance());
+        importedTypes.add(listType);
         method.addParameter(new Parameter(parameterType, "record")); //$NON-NLS-1$
 
         context.getCommentGenerator().addGeneralMethodComment(method,introspectedTable);
 
         addMapperAnnotations(interfaze, method);
         
-        if (context.getPlugins().clientSelectBySelectiveParametersMethodGenerated(method, interfaze, introspectedTable)) {
+        if (context.getPlugins().clientSelectByParametersSelectiveMethodGenerated(method, interfaze, introspectedTable)) {
             addExtraImports(interfaze);
             interfaze.addImportedTypes(importedTypes);
             interfaze.addMethod(method);

@@ -139,8 +139,8 @@ public class RulesDelegate implements Rules {
         return rules.generateSelectByPrimaryKey();
     }
     @Override
-    public boolean generateSelectBySelectiveParameters() {
-    	return rules.generateSelectBySelectiveParameters();
+    public boolean generateSelectByParametersSelective() {
+    	return rules.generateSelectByParametersSelective();
     }
     @Override
     public boolean generateSelectCountBySelective() {

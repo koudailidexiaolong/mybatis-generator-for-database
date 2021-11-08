@@ -36,8 +36,8 @@ import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ResultMapWithBL
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ResultMapWithoutBLOBsElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectByExampleWithBLOBsElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectByExampleWithoutBLOBsElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectByParametersSelectiveElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectByPrimaryKeyElementGenerator;
-import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectBySelectiveParametersElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectCountBySelectiveElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByExampleSelectiveElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByExampleWithBLOBsElementGenerator;
@@ -84,7 +84,7 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         addSelectByExampleWithoutBLOBsElement(answer);
         addSelectByPrimaryKeyElement(answer);
         //查询多条件
-        addSelectBySelectiveParametersElement(answer);
+        addSelectByParametersSelectiveElement(answer);
         addSelectCountBySelectiveElement(answer);
         addDeleteByPrimaryKeyElement(answer);
         addDeleteByExampleElement(answer);
@@ -169,9 +169,9 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         }
     }
     
-    protected void addSelectBySelectiveParametersElement(XmlElement parentElement) {
-    	if (introspectedTable.getRules().generateSelectBySelectiveParameters()) {
-    		AbstractXmlElementGenerator elementGenerator = new SelectBySelectiveParametersElementGenerator();
+    protected void addSelectByParametersSelectiveElement(XmlElement parentElement) {
+    	if (introspectedTable.getRules().generateSelectByParametersSelective()) {
+    		AbstractXmlElementGenerator elementGenerator = new SelectByParametersSelectiveElementGenerator();
     		initializeAndExecuteGenerator(elementGenerator, parentElement);
     	}
     }

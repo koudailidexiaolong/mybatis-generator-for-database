@@ -225,16 +225,14 @@ public class JavaBeansUtil {
     public static Method getJavaBeansSetter(IntrospectedColumn introspectedColumn,
             Context context,
             IntrospectedTable introspectedTable) {
-        FullyQualifiedJavaType fqjt = introspectedColumn
-                .getFullyQualifiedJavaType();
+        FullyQualifiedJavaType fqjt = introspectedColumn.getFullyQualifiedJavaType();
         String property = introspectedColumn.getJavaProperty();
 
         Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setName(getSetterMethodName(property));
         method.addParameter(new Parameter(fqjt, property));
-        context.getCommentGenerator().addSetterComment(method,
-                introspectedTable, introspectedColumn);
+        context.getCommentGenerator().addSetterComment(method,introspectedTable, introspectedColumn);
 
         StringBuilder sb = new StringBuilder();
         if (introspectedColumn.isStringColumn() && isTrimStringsEnabled(introspectedColumn)) {
@@ -259,10 +257,8 @@ public class JavaBeansUtil {
     }
 
     private static boolean isTrimStringsEnabled(Context context) {
-        Properties properties = context
-                .getJavaModelGeneratorConfiguration().getProperties();
-        boolean rc = isTrue(properties
-                .getProperty(PropertyRegistry.MODEL_GENERATOR_TRIM_STRINGS));
+        Properties properties = context.getJavaModelGeneratorConfiguration().getProperties();
+        boolean rc = isTrue(properties.getProperty(PropertyRegistry.MODEL_GENERATOR_TRIM_STRINGS));
         return rc;
     }
 
