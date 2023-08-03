@@ -648,7 +648,7 @@ public interface Plugin {
      *         first plugin returning false will disable the calling of further
      *         plugins.
      */
-    boolean clientSelectByParametersSelectiveMethodGenerated(Method method,Interface interfaze, IntrospectedTable introspectedTable);
+    boolean clientSelectBySelectiveMethodGenerated(Method method,Interface interfaze, IntrospectedTable introspectedTable);
     /**
      * This method is called when the selectByParametersSelective method has been
      * generated in the client implementation class.
@@ -667,7 +667,7 @@ public interface Plugin {
      *         first plugin returning false will disable the calling of further
      *         plugins.
      */
-    boolean clientSelectByParametersSelectiveMethodGenerated(Method method,TopLevelClass topLevelClass, IntrospectedTable introspectedTable);
+    boolean clientSelectBySelectiveMethodGenerated(Method method,TopLevelClass topLevelClass, IntrospectedTable introspectedTable);
     /**
      * This method is called when the selectCountBySelective method has been
      * generated in the client interface.
@@ -1398,7 +1398,7 @@ public interface Plugin {
      * @date 2021年10月25日 下午1:35:18
      * @desc
      */
-    boolean sqlMapSelectByParametersSelectiveElementGenerated(XmlElement element,IntrospectedTable introspectedTable);
+    boolean sqlMapSelectBySelectiveElementGenerated(XmlElement element,IntrospectedTable introspectedTable);
     
     /**
      * 条件查询总数
@@ -1772,4 +1772,6 @@ public interface Plugin {
      */
     boolean providerUpdateByPrimaryKeySelectiveMethodGenerated(Method method,
             TopLevelClass topLevelClass, IntrospectedTable introspectedTable);
+
+
 }

@@ -9,7 +9,7 @@ mybatis-generator-for-database xml生成工具
 
  	1. 增加xml和java类中生成的注释 
  	2. 增加get、set 方法生成基于数据库字段中文描述注释
- 	3. 增加通用查询方法 selectBySelectiveParameters
+ 	3. 增加通用查询方法 selectBySelective
  	4. 增加xml中 String 类型字段 字符串判断是否为空问题
 
 
@@ -102,7 +102,7 @@ mybatis-generator-for-database xml生成工具
     where user_id = #{userId,jdbcType=VARCHAR}
   </select>
      <!-- 新增方法 -->
-    <select id="selectBySelectiveParameters" parameterType="com.julong.market.dao.entity.SystemUserInfo" resultMap="BaseResultMap">
+    <select id="selectBySelective" parameterType="com.julong.market.dao.entity.SystemUserInfo" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from system_user
@@ -201,7 +201,7 @@ public interface SystemUserMapper {
 
     public abstract SystemUserInfo selectByPrimaryKey(String userId);
 
-    public abstract SystemUserInfo selectBySelectiveParameters(SystemUserInfo record);
+    public abstract SystemUserInfo selectBySelective(SystemUserInfo record);
 
     public abstract int selectCountBySelective(SystemUserInfo record);
 

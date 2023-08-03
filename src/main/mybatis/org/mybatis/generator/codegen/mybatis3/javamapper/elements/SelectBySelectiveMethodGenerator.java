@@ -31,12 +31,12 @@ import org.mybatis.generator.api.dom.java.Parameter;
  * @date 2021年11月1日 下午8:20:21
  * @desc
  */
-public class SelectByParametersSelectiveMethodGenerator extends AbstractJavaMapperMethodGenerator {
+public class SelectBySelectiveMethodGenerator extends AbstractJavaMapperMethodGenerator {
 
 
-    public SelectByParametersSelectiveMethodGenerator() {
+    public SelectBySelectiveMethodGenerator() {
 		super();
-		// TODO 自定义查询列表方法 SelectByParametersSelective
+		// TODO 自定义查询列表方法 SelectBySelective
 	}
 
     @Override
@@ -49,7 +49,7 @@ public class SelectByParametersSelectiveMethodGenerator extends AbstractJavaMapp
         returnType.addTypeArgument(listType);
         FullyQualifiedJavaType.getNewListInstance().addTypeArgument(returnType);
         method.setReturnType(returnType);
-        method.setName(introspectedTable.getSelectByParametersSelectiveStatementId());
+        method.setName(introspectedTable.getSelectBySelectiveStatementId());
         
         FullyQualifiedJavaType parameterType = introspectedTable.getRules().calculateAllFieldsClass();
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
@@ -61,7 +61,7 @@ public class SelectByParametersSelectiveMethodGenerator extends AbstractJavaMapp
 
         addMapperAnnotations(interfaze, method);
         
-        if (context.getPlugins().clientSelectByParametersSelectiveMethodGenerated(method, interfaze, introspectedTable)) {
+        if (context.getPlugins().clientSelectBySelectiveMethodGenerated(method, interfaze, introspectedTable)) {
             addExtraImports(interfaze);
             interfaze.addImportedTypes(importedTypes);
             interfaze.addMethod(method);

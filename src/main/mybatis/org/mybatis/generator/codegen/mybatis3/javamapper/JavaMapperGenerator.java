@@ -36,8 +36,8 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.InsertMethodGe
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.InsertSelectiveMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByExampleWithBLOBsMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByExampleWithoutBLOBsMethodGenerator;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByParametersSelectiveMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByPrimaryKeyMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectBySelectiveMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectCountBySelectiveMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByExampleSelectiveMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByExampleWithBLOBsMethodGenerator;
@@ -92,10 +92,10 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         addSelectByExampleWithBLOBsMethod(interfaze);
         addSelectByExampleWithoutBLOBsMethod(interfaze);
         addSelectByPrimaryKeyMethod(interfaze);
-        //自定义方法 
-        //TODO 自定义查询列表方法 SelectByParametersSelective
-        addSelectByParametersSelectiveMethod(interfaze);
-        //TODO 自定义查询总数方法 SelectCountBySelective
+        //TODO 自定义方法 
+        //自定义查询列表方法 SelectBySelective
+        addSelectBySelectiveMethod(interfaze);
+        //自定义查询总数方法 SelectCountBySelective
         addSelectCountBySelectiveMethod(interfaze);
         
         addUpdateByExampleSelectiveMethod(interfaze);
@@ -173,10 +173,17 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
     }
-    protected void addSelectByParametersSelectiveMethod(Interface interfaze) {
+    /**
+     * 全字段查询的方法
+     * @param interfaze
+     * @author julong
+     * @date 2023年8月3日 下午10:35:37
+     * @desc
+     */
+    protected void addSelectBySelectiveMethod(Interface interfaze) {
     	//校验是否有权限创建此方法
-    	if (introspectedTable.getRules().generateSelectByParametersSelective()) {
-    		AbstractJavaMapperMethodGenerator methodGenerator = new SelectByParametersSelectiveMethodGenerator();
+    	if (introspectedTable.getRules().generateSelectBySelective()) {
+    		AbstractJavaMapperMethodGenerator methodGenerator = new SelectBySelectiveMethodGenerator();
     		initializeAndExecuteGenerator(methodGenerator, interfaze);
     	}
     }

@@ -33,14 +33,34 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 
 /**
  * The Class TableConfiguration.
- *
- * @author Jeff Butler
+ * 数据库表配置类
+ * @author julong
+ * @date 2023年8月3日 下午10:42:12
+ * @desc
  */
 public class TableConfiguration extends PropertyHolder {
 
+	 /**
+     * 新增方法
+     * @author julong
+     * @date 2023年8月3日 下午10:43:26
+     */
     private boolean insertStatementEnabled;
 
+    /**
+     * 根据主键查询方法
+     * @author julong
+     * @date 2023年8月3日 下午10:43:26
+     */
     private boolean selectByPrimaryKeyStatementEnabled;
+
+   
+    /**
+     * 全字段查询方法
+     * @author julong
+     * @date 2023年8月3日 下午10:43:46
+     */
+    private boolean selectBySelectiveEnabled;
 
     private boolean selectByExampleStatementEnabled;
 
@@ -130,6 +150,17 @@ public class TableConfiguration extends PropertyHolder {
 
     public boolean isSelectByPrimaryKeyStatementEnabled() {
         return selectByPrimaryKeyStatementEnabled;
+    }
+
+    /**
+     * 全字段查询
+     * @return
+     * @author julong
+     * @date 2023年8月3日 下午10:44:19
+     * @desc
+     */
+    public boolean isSelectBySelectiveStatementEnabled() {
+        return selectBySelectiveEnabled;
     }
 
     public void setSelectByPrimaryKeyStatementEnabled(

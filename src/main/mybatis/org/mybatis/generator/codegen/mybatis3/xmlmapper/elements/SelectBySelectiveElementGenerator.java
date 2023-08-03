@@ -29,15 +29,15 @@ import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
 
 
 /**
- * 根据条件查询
+ * 全字段查询方法
  * @author julong
  * @date 2021年10月25日 下午1:28:55
  * @desc 
  */
-public class SelectByParametersSelectiveElementGenerator extends AbstractXmlElementGenerator {
+public class SelectBySelectiveElementGenerator extends AbstractXmlElementGenerator {
 
 	
-    public SelectByParametersSelectiveElementGenerator() {
+    public SelectBySelectiveElementGenerator() {
         super();
     }
 
@@ -46,7 +46,7 @@ public class SelectByParametersSelectiveElementGenerator extends AbstractXmlElem
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
 
-        answer.addAttribute(new Attribute("id", introspectedTable.getSelectByParametersSelectiveStatementId())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute("id", introspectedTable.getSelectBySelectiveStatementId())); //$NON-NLS-1$
         if (introspectedTable.getRules().generateResultMapWithBLOBs()) {
             answer.addAttribute(new Attribute("resultMap", //$NON-NLS-1$
                     introspectedTable.getResultMapWithBLOBsId()));
@@ -112,7 +112,7 @@ public class SelectByParametersSelectiveElementGenerator extends AbstractXmlElem
 			isNotNullElement.addElement(new TextElement(sb.toString()));
 		}
 
-        if (context.getPlugins().sqlMapSelectByParametersSelectiveElementGenerated(answer,introspectedTable)) {
+        if (context.getPlugins().sqlMapSelectBySelectiveElementGenerated(answer,introspectedTable)) {
             parentElement.addElement(answer);
         }
     }

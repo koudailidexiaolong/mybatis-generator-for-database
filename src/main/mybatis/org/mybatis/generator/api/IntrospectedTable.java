@@ -55,6 +55,13 @@ public abstract class IntrospectedTable {
         MYBATIS3_DSQL
     }
 
+    
+    /**
+     * 方法名枚举
+     * @author julong
+     * @date 2023年8月3日 下午11:04:59
+     * @desc 
+     */
     protected enum InternalAttribute {
         ATTR_DAO_IMPLEMENTATION_TYPE,
         ATTR_DAO_INTERFACE_TYPE,
@@ -83,7 +90,7 @@ public abstract class IntrospectedTable {
         ATTR_SELECT_BY_EXAMPLE_WITH_BLOBS_STATEMENT_ID,
         ATTR_SELECT_BY_PRIMARY_KEY_STATEMENT_ID,
         //TODO 自定义查询方法属性定义
-        ATTR_SELECT_BY_PARAMETERS_SELECTIVE_STATEMENT_ID,
+        ATTR_SELECT_BY_SELECTIVE_STATEMENT_ID,
         ATTR_SELECT_COUNT_BY_SELECTIVE_STATEMENT_ID,
         
         ATTR_UPDATE_BY_EXAMPLE_STATEMENT_ID,
@@ -513,6 +520,12 @@ public abstract class IntrospectedTable {
         context.getPlugins().initialized(this);
     }
 
+    /**
+     * xml中的方法名
+     * @author julong
+     * @date 2023年8月3日 下午11:05:43
+     * @desc
+     */
     protected void calculateXmlAttributes() {
         setIbatis2SqlMapPackage(calculateSqlMapPackage());
         setIbatis2SqlMapFileName(calculateIbatis2SqlMapFileName());
@@ -534,10 +547,10 @@ public abstract class IntrospectedTable {
         setSelectByExampleStatementId("selectByExample"); //$NON-NLS-1$
         setSelectByExampleWithBLOBsStatementId("selectByExampleWithBLOBs"); //$NON-NLS-1$
         setSelectByPrimaryKeyStatementId("selectByPrimaryKey"); //$NON-NLS-1$
-        //自定义查询方法
+        //TODO 自定义查询方法
         
         //条件查询
-        setSelectByParametersSelectiveStatementId("selectByParametersSelective"); //$NON-NLS-1$
+        setSelectBySelectiveStatementId("selectBySelective"); //$NON-NLS-1$
         setSelectCountBySelectiveStatementId("selectCountBySelective"); //$NON-NLS-1$
         
         
@@ -565,19 +578,15 @@ public abstract class IntrospectedTable {
     }
 
     public void setExampleWhereClauseId(String s) {
-        internalAttributes.put(InternalAttribute.ATTR_EXAMPLE_WHERE_CLAUSE_ID,
-                s);
+        internalAttributes.put(InternalAttribute.ATTR_EXAMPLE_WHERE_CLAUSE_ID,s);
     }
 
     public void setMyBatis3UpdateByExampleWhereClauseId(String s) {
-        internalAttributes.put(
-                InternalAttribute.ATTR_MYBATIS3_UPDATE_BY_EXAMPLE_WHERE_CLAUSE_ID,
-                s);
+        internalAttributes.put(InternalAttribute.ATTR_MYBATIS3_UPDATE_BY_EXAMPLE_WHERE_CLAUSE_ID,s);
     }
 
     public void setResultMapWithBLOBsId(String s) {
-        internalAttributes.put(InternalAttribute.ATTR_RESULT_MAP_WITH_BLOBS_ID,
-                s);
+        internalAttributes.put(InternalAttribute.ATTR_RESULT_MAP_WITH_BLOBS_ID,s);
     }
 
     public void setBaseResultMapId(String s) {
@@ -585,27 +594,19 @@ public abstract class IntrospectedTable {
     }
 
     public void setUpdateByPrimaryKeyWithBLOBsStatementId(String s) {
-        internalAttributes.put(
-                InternalAttribute.ATTR_UPDATE_BY_PRIMARY_KEY_WITH_BLOBS_STATEMENT_ID,
-                s);
+        internalAttributes.put(InternalAttribute.ATTR_UPDATE_BY_PRIMARY_KEY_WITH_BLOBS_STATEMENT_ID,s);
     }
 
     public void setUpdateByPrimaryKeySelectiveStatementId(String s) {
-        internalAttributes
-                .put(
-                        InternalAttribute.ATTR_UPDATE_BY_PRIMARY_KEY_SELECTIVE_STATEMENT_ID,
-                        s);
+        internalAttributes.put(InternalAttribute.ATTR_UPDATE_BY_PRIMARY_KEY_SELECTIVE_STATEMENT_ID,s);
     }
 
     public void setUpdateByPrimaryKeyStatementId(String s) {
-        internalAttributes.put(
-                InternalAttribute.ATTR_UPDATE_BY_PRIMARY_KEY_STATEMENT_ID, s);
+        internalAttributes.put(InternalAttribute.ATTR_UPDATE_BY_PRIMARY_KEY_STATEMENT_ID, s);
     }
 
     public void setUpdateByExampleWithBLOBsStatementId(String s) {
-        internalAttributes.put(
-                InternalAttribute.ATTR_UPDATE_BY_EXAMPLE_WITH_BLOBS_STATEMENT_ID,
-                s);
+        internalAttributes.put(InternalAttribute.ATTR_UPDATE_BY_EXAMPLE_WITH_BLOBS_STATEMENT_ID,s);
     }
 
     public void setUpdateByExampleSelectiveStatementId(String s) {
@@ -634,8 +635,8 @@ public abstract class IntrospectedTable {
      * @date 2021年10月25日 下午1:15:40
      * @desc
      */
-    public void setSelectByParametersSelectiveStatementId(String s) {
-    	internalAttributes.put(InternalAttribute.ATTR_SELECT_BY_PARAMETERS_SELECTIVE_STATEMENT_ID, s);
+    public void setSelectBySelectiveStatementId(String s) {
+    	internalAttributes.put(InternalAttribute.ATTR_SELECT_BY_SELECTIVE_STATEMENT_ID, s);
     }
     /**
      * 根据条件查询总数
@@ -739,8 +740,8 @@ public abstract class IntrospectedTable {
      * @date 2021年10月25日 下午1:39:51
      * @desc
      */
-    public String getSelectByParametersSelectiveStatementId() {
-    	return internalAttributes.get(InternalAttribute.ATTR_SELECT_BY_PARAMETERS_SELECTIVE_STATEMENT_ID);
+    public String getSelectBySelectiveStatementId() {
+    	return internalAttributes.get(InternalAttribute.ATTR_SELECT_BY_SELECTIVE_STATEMENT_ID);
     }
     
     /**

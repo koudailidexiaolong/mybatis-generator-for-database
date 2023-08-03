@@ -148,6 +148,7 @@ public interface Rules {
     boolean generateMyBatis3UpdateByExampleWhereClause();
 
     /**
+     * 是否生成字段列表
      * Implements the rule for generating the SQL base column list element.
      * Generate the element if any of the select methods are enabled.
      * 
@@ -156,6 +157,7 @@ public interface Rules {
     boolean generateBaseColumnList();
 
     /**
+     * 是否生成大字段列
      * Implements the rule for generating the SQL blob column list element.
      * Generate the element if any of the select methods are enabled, and the
      * table contains BLOB columns.
@@ -165,6 +167,7 @@ public interface Rules {
     boolean generateBlobColumnList();
 
     /**
+     * 是否生成 主键查询的方法
      * Implements the rule for generating the select by primary key SQL Map
      * element and DAO method. If the table has a primary key as well as other
      * fields, and the selectByPrimaryKey statement is allowed, then generate
@@ -175,7 +178,7 @@ public interface Rules {
     boolean generateSelectByPrimaryKey();
     
     /**
-     * 自定义查询方法
+     * 是否生成全字段查询
      * Implements the rule for generating the select by primary key SQL Map
      * element and DAO method. If the table has a primary key as well as other
      * fields, and the selectByPrimaryKey statement is allowed, then generate
@@ -183,7 +186,7 @@ public interface Rules {
      * 
      * @return true if the element and method should be generated
      */
-    boolean generateSelectByParametersSelective();
+    boolean generateSelectBySelective();
     /**
      * 自定义查询总数方法
      * Implements the rule for generating the select by primary key SQL Map

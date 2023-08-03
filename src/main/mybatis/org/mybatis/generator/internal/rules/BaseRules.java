@@ -330,7 +330,7 @@ public abstract class BaseRules implements Rules {
     }
     
     @Override
-    public boolean generateSelectByParametersSelective() {
+    public boolean generateSelectBySelective() {
     	if (isModelOnly) {
     		return false;
     	}

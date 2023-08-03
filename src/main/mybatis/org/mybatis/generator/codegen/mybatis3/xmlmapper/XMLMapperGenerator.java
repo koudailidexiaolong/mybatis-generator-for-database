@@ -36,8 +36,8 @@ import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ResultMapWithBL
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ResultMapWithoutBLOBsElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectByExampleWithBLOBsElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectByExampleWithoutBLOBsElementGenerator;
-import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectByParametersSelectiveElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectByPrimaryKeyElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectBySelectiveElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SelectCountBySelectiveElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByExampleSelectiveElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByExampleWithBLOBsElementGenerator;
@@ -47,9 +47,11 @@ import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByPrimary
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByPrimaryKeyWithoutBLOBsElementGenerator;
 
 /**
+ * XML文件生成的方法  
  * 
- * @author Jeff Butler
- * 
+ * @author julong
+ * @date 2023年8月3日 下午10:53:43
+ * @desc
  */
 public class XMLMapperGenerator extends AbstractXmlGenerator {
 
@@ -58,7 +60,7 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
     }
 
     /**
-     * 此处标识 生成的方法
+     * 此处标识 生成的方法  生成sql xml的方法
      * @return
      * @author julong
      * @date 2021年10月25日 下午4:11:04
@@ -67,11 +69,14 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
     protected XmlElement getSqlMapElement() {
         FullyQualifiedTable table = introspectedTable.getFullyQualifiedTable();
         progressCallback.startTask(getString("Progress.12", table.toString())); //$NON-NLS-1$
+        //创建xml节点
         XmlElement answer = new XmlElement("mapper"); //$NON-NLS-1$
+        //获取命名空间
         String namespace = introspectedTable.getMyBatis3SqlMapNamespace();
+        //设置命名空间
         answer.addAttribute(new Attribute("namespace", //$NON-NLS-1$
                 namespace));
-
+        //添加节点
         context.getCommentGenerator().addRootComment(answer);
 
         addResultMapWithoutBLOBsElement(answer);
@@ -83,9 +88,11 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         addSelectByExampleWithBLOBsElement(answer);
         addSelectByExampleWithoutBLOBsElement(answer);
         addSelectByPrimaryKeyElement(answer);
-        //查询多条件
-        addSelectByParametersSelectiveElement(answer);
+        //TODO 查询多条件
+        addSelectBySelectiveElement(answer);
         addSelectCountBySelectiveElement(answer);
+        
+        
         addDeleteByPrimaryKeyElement(answer);
         addDeleteByExampleElement(answer);
         addInsertElement(answer);
@@ -117,16 +124,13 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
 
     protected void addExampleWhereClauseElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateSQLExampleWhereClause()) {
-            AbstractXmlElementGenerator elementGenerator = new ExampleWhereClauseElementGenerator(
-                    false);
+            AbstractXmlElementGenerator elementGenerator = new ExampleWhereClauseElementGenerator(false);
             initializeAndExecuteGenerator(elementGenerator, parentElement);
         }
     }
 
-    protected void addMyBatis3UpdateByExampleWhereClauseElement(
-            XmlElement parentElement) {
-        if (introspectedTable.getRules()
-                .generateMyBatis3UpdateByExampleWhereClause()) {
+    protected void addMyBatis3UpdateByExampleWhereClauseElement(XmlElement parentElement) {
+        if (introspectedTable.getRules().generateMyBatis3UpdateByExampleWhereClause()) {
             AbstractXmlElementGenerator elementGenerator = new ExampleWhereClauseElementGenerator(
                     true);
             initializeAndExecuteGenerator(elementGenerator, parentElement);
@@ -169,9 +173,9 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         }
     }
     
-    protected void addSelectByParametersSelectiveElement(XmlElement parentElement) {
-    	if (introspectedTable.getRules().generateSelectByParametersSelective()) {
-    		AbstractXmlElementGenerator elementGenerator = new SelectByParametersSelectiveElementGenerator();
+    protected void addSelectBySelectiveElement(XmlElement parentElement) {
+    	if (introspectedTable.getRules().generateSelectBySelective()) {
+    		AbstractXmlElementGenerator elementGenerator = new SelectBySelectiveElementGenerator();
     		initializeAndExecuteGenerator(elementGenerator, parentElement);
     	}
     }
@@ -265,9 +269,7 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         }
     }
 
-    protected void initializeAndExecuteGenerator(
-            AbstractXmlElementGenerator elementGenerator,
-            XmlElement parentElement) {
+    protected void initializeAndExecuteGenerator(AbstractXmlElementGenerator elementGenerator,XmlElement parentElement) {
         elementGenerator.setContext(context);
         elementGenerator.setIntrospectedTable(introspectedTable);
         elementGenerator.setProgressCallback(progressCallback);
