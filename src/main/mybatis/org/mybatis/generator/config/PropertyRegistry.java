@@ -77,6 +77,7 @@ public class PropertyRegistry {
 
     public static final String TYPE_RESOLVER_FORCE_BIG_DECIMALS = "forceBigDecimals"; //$NON-NLS-1$
     public static final String TYPE_RESOLVER_USE_JSR310_TYPES = "useJSR310Types"; //$NON-NLS-1$
+    
     /**
      * trimStrings 方法
      * @author julong
@@ -90,39 +91,47 @@ public class PropertyRegistry {
      * @date 2021年10月25日 下午12:22:46
      */
     public static final String COMMENT_GENERATOR_ADD_REMARK_COMMENTS = "addRemarkComments"; //$NON-NLS-1$
+    
     /**
      * 格式化日期注释 可以通过配置文件配置
      * @author julong
      * @date 2021年10月25日 下午12:21:47
      */
     public static final String COMMENT_GENERATOR_DATE_FORMAT = "dateFormat"; //$NON-NLS-1$
+    
     /**
-     * 是否增加时间注释
+     * 时间注释
      * @author julong
      * @date 2021年10月21日 下午1:25:42
      */
     public static final String COMMENT_GENERATOR_SUPPRESS_DATE = "suppressDate"; //$NON-NLS-1$
+   
+    
     /**
      * 所有的注释
      * @author julong
      * @date 2021年10月21日 下午1:24:18
      */
     public static final String COMMENT_GENERATOR_SUPPRESS_ALL_COMMENTS = "suppressAllComments"; //$NON-NLS-1$
+    
+    
     /**
-     * xml文件中是否生成注释
+     * xml文件中注释
      * @author julong
      * @date 2021年10月21日 下午1:23:52
      */
     public static final String COMMENT_GENERATOR_SUPPRESS_XML_COMMENTS = "suppressXMLComments"; //$NON-NLS-1$
+    
     /**
-     * 生成的方法是否增加默认描述
+     * 生成详细描述
      * @author julong
      * @date 2021年10月21日 下午1:23:30
      */
-    public static final String COMMENT_GENERATOR_SUPPRESS_DEFAULT_DESC = "suppressDefaultDesc"; //$NON-NLS-1$
+    public static final String COMMENT_GENERATOR_SUPPRESS_DEFAULT_DESCRIPTION = "suppressDefaultDescription"; //$NON-NLS-1$
+   
     
     /**
-     * 生成的方法是否增加默认注释
+     * 生成的方法默认注释
      * @author julong
      * @date 2021年10月21日 下午1:23:14
      */

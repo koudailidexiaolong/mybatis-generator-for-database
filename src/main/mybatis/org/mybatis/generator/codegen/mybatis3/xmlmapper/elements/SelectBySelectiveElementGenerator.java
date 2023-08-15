@@ -88,9 +88,8 @@ public class SelectBySelectiveElementGenerator extends AbstractXmlElementGenerat
 		for (IntrospectedColumn introspectedColumn : ListUtilities.removeGeneratedAlwaysColumns(introspectedTable.getAllColumns())) {
 			sb.setLength(0);
 			XmlElement isNotNullElement = new XmlElement("if"); //$NON-NLS-1$
-			if(introspectedColumn.getJdbcType() == Types.DATE 
-            		|| introspectedColumn.getJdbcType() == Types.TIMESTAMP 
-            		|| introspectedColumn.getJdbcType() == Types.TIME){
+			if(introspectedColumn.getJdbcType() != Types.VARCHAR && introspectedColumn.getJdbcType() != Types.CHAR && introspectedColumn.getJdbcType() != Types.NVARCHAR
+					 && introspectedColumn.getJdbcType() != Types.NCHAR){
 				sb.append(introspectedColumn.getJavaProperty());
 				sb.append(" != null "); //$NON-NLS-1$
 			}else{

@@ -25,7 +25,7 @@ import org.mybatis.generator.internal.util.StringUtility;
 /**
  * This class holds information about an introspected column. The class has
  * utility methods useful for generating iBATIS objects.
- * 
+ * 数据库字段
  * @author Jeff Butler
  */
 public class IntrospectedColumn {

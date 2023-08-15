@@ -77,7 +77,7 @@ public interface CommentGenerator {
      * be notified not to delete the entire class in case any manual
      * changes have been made.  So this method will always use the 
      * "do not delete" annotation.
-     * 
+     * 类注释
      * <p>Because of difficulties with the Java file merger, the default implementation
      * of this method should NOT add comments.  Comments should only be added if
      * specifically requested by the user (for example, by enabling table remark comments).
@@ -113,18 +113,17 @@ public interface CommentGenerator {
 
     /**
      * Adds the enum comment.
-     *
+     * 枚举注释
      * @param innerEnum
      *            the inner enum
      * @param introspectedTable
      *            the introspected table
      */
-    void addEnumComment(InnerEnum innerEnum,
-            IntrospectedTable introspectedTable);
+    void addEnumComment(InnerEnum innerEnum, IntrospectedTable introspectedTable);
 
     /**
      * Adds the getter comment.
-     *
+     * get方法注释
      * @param method
      *            the method
      * @param introspectedTable
@@ -132,13 +131,11 @@ public interface CommentGenerator {
      * @param introspectedColumn
      *            the introspected column
      */
-    void addGetterComment(Method method,
-            IntrospectedTable introspectedTable,
-            IntrospectedColumn introspectedColumn);
+    void addGetterComment(Method method,IntrospectedTable introspectedTable,IntrospectedColumn introspectedColumn);
 
     /**
      * Adds the setter comment.
-     *
+     * set方法注释
      * @param method
      *            the method
      * @param introspectedTable
@@ -146,20 +143,17 @@ public interface CommentGenerator {
      * @param introspectedColumn
      *            the introspected column
      */
-    void addSetterComment(Method method,
-            IntrospectedTable introspectedTable,
-            IntrospectedColumn introspectedColumn);
+    void addSetterComment(Method method,IntrospectedTable introspectedTable,IntrospectedColumn introspectedColumn);
 
     /**
      * Adds the general method comment.
-     *
+     * 方法注释
      * @param method
      *            the method
      * @param introspectedTable
      *            the introspected table
      */
-    void addGeneralMethodComment(Method method,
-            IntrospectedTable introspectedTable);
+    void addGeneralMethodComment(Method method, IntrospectedTable introspectedTable);
 
     /**
      * This method is called to add a file level comment to a generated java file. This method

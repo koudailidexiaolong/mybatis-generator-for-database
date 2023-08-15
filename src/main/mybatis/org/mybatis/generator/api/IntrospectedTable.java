@@ -43,7 +43,7 @@ import org.mybatis.generator.internal.rules.Rules;
  * Base class for all code generator implementations. This class provides many
  * of the housekeeping methods needed to implement a code generator, with only
  * the actual code generation methods left unimplemented.
- * 
+ * 数据库表
  * @author Jeff Butler
  * 
  */
