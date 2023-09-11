@@ -201,7 +201,7 @@ public class ObjectFactory {
         } else {
             type = JavaTypeResolverDefaultImpl.class.getName();
         }
-
+        //读取java类型
         JavaTypeResolver answer = (JavaTypeResolver) createInternalObject(type);
         answer.setWarnings(warnings);
 
@@ -225,8 +225,7 @@ public class ObjectFactory {
 
     public static CommentGenerator createCommentGenerator(Context context) {
 
-        CommentGeneratorConfiguration config = context
-                .getCommentGeneratorConfiguration();
+        CommentGeneratorConfiguration config = context.getCommentGeneratorConfiguration();
         CommentGenerator answer;
 
         String type;

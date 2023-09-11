@@ -24,7 +24,7 @@ import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 
 /**
- * 
+ * 数据库连接对象
  * @author Jeff Butler
  */
 public class JDBCConnectionConfiguration extends PropertyHolder {

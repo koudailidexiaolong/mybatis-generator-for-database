@@ -436,17 +436,17 @@ public class Context extends PropertyHolder {
             throws SQLException, InterruptedException {
 
         introspectedTables = new ArrayList<IntrospectedTable>();
-        JavaTypeResolver javaTypeResolver = ObjectFactory
-                .createJavaTypeResolver(this, warnings);
-
+        //java 类型关系映射
+        JavaTypeResolver javaTypeResolver = ObjectFactory.createJavaTypeResolver(this, warnings);
+        //定义连接对象
         Connection connection = null;
 
         try {
             callback.startTask(getString("Progress.0")); //$NON-NLS-1$
+            //获取数据库连接对象
             connection = getConnection();
-
-            DatabaseIntrospector databaseIntrospector = new DatabaseIntrospector(
-                    this, connection.getMetaData(), javaTypeResolver, warnings);
+            //数据库连接获取对象
+            DatabaseIntrospector databaseIntrospector = new DatabaseIntrospector(this, connection.getMetaData(), javaTypeResolver, warnings);
 
             for (TableConfiguration tc : tableConfigurations) {
                 String tableName = composeFullyQualifiedTableName(tc.getCatalog(), tc
@@ -531,6 +531,7 @@ public class Context extends PropertyHolder {
                 .contextGenerateAdditionalXmlFiles());
     }
 
+    //创建连接对象
     private Connection getConnection() throws SQLException {
         ConnectionFactory connectionFactory;
         if (jdbcConnectionConfiguration != null) {

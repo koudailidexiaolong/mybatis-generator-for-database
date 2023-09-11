@@ -138,6 +138,7 @@ public class RulesDelegate implements Rules {
     public boolean generateSelectByPrimaryKey() {
         return rules.generateSelectByPrimaryKey();
     }
+
     //TODO 自定义方法
     @Override
     public boolean generateSelectBySelective() {

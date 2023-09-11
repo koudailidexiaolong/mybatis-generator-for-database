@@ -68,7 +68,6 @@ public class SelectByPrimaryKeyElementGenerator extends AbstractXmlElementGenera
 
         StringBuilder sb = new StringBuilder();
         sb.append("select "); //$NON-NLS-1$
-
         if (stringHasValue(introspectedTable.getSelectByPrimaryKeyQueryId())) {
             sb.append('\'');
             sb.append(introspectedTable.getSelectByPrimaryKeyQueryId());

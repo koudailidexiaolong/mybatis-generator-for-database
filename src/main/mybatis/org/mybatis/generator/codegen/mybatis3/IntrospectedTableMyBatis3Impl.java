@@ -96,6 +96,7 @@ public class IntrospectedTableMyBatis3Impl extends IntrospectedTable {
         return javaGenerator;
     }
 
+    //java 类生成
     protected AbstractJavaClientGenerator createJavaClientGenerator() {
         if (context.getJavaClientGeneratorConfiguration() == null) {
             return null;

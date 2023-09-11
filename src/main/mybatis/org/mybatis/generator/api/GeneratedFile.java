@@ -17,7 +17,7 @@ package org.mybatis.generator.api;
 
 /**
  * Abstract class that holds information common to all generated files.
- * 
+ * 生成文件类
  * @author Jeff Butler
  */
 public abstract class GeneratedFile {
@@ -50,7 +50,7 @@ public abstract class GeneratedFile {
     /**
      * Get the file name (without any path). Clients should use this method to
      * determine how to save the results.
-     * 
+     *  获取文件名
      * @return Returns the file name.
      */
     public abstract String getFileName();

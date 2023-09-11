@@ -136,7 +136,13 @@ public class PropertyRegistry {
      * @date 2021年10月21日 下午1:23:14
      */
     public static final String COMMENT_GENERATOR_SUPPRESS_METHOD_COMMENTS = "suppressMethodComments"; //$NON-NLS-1$
-    
- 
+
+    /**
+     * xmlsql文件中if条件是否增加 空字符串判断
+     * @author julong
+     * @date 2021年10月21日 下午1:23:14
+     */
+    public static final String COMMENT_GENERATOR_SUPPRESS_XML_METHOD_EMPTY_STRING = "suppressXMLMethodEmptyString"; //$NON-NLS-1$
+
     
 }

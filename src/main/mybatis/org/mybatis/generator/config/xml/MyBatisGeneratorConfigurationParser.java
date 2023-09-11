@@ -352,6 +352,7 @@ public class MyBatisGeneratorConfigurationParser {
             tc.setAllColumnDelimitingEnabled(isTrue(delimitAllColumns));
         }
 
+        //定义的类名 对应 dao 层的名称
         String mapperName = attributes.getProperty("mapperName"); //$NON-NLS-1$
         if (stringHasValue(mapperName)) {
             tc.setMapperName(mapperName);

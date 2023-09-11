@@ -117,10 +117,25 @@ public abstract class IntrospectedTable {
 
     protected Rules rules;
 
+    /**
+     * 主键
+     * @author julong
+     * @date 2023年8月15日 下午9:12:01
+     */
     protected List<IntrospectedColumn> primaryKeyColumns;
 
+    /**
+     * 数据库列
+     * @author julong
+     * @date 2023年8月15日 下午9:11:58
+     */
     protected List<IntrospectedColumn> baseColumns;
 
+    /**
+     * blob列
+     * @author julong
+     * @date 2023年8月15日 下午9:12:15
+     */
     protected List<IntrospectedColumn> blobColumns;
 
     protected TargetRuntime targetRuntime;
@@ -177,13 +192,11 @@ public abstract class IntrospectedTable {
             // search primary key columns
             for (IntrospectedColumn introspectedColumn : primaryKeyColumns) {
                 if (introspectedColumn.isColumnNameDelimited()) {
-                    if (introspectedColumn.getActualColumnName().equals(
-                            columnName)) {
+                    if (introspectedColumn.getActualColumnName().equals(columnName)) {
                         return introspectedColumn;
                     }
                 } else {
-                    if (introspectedColumn.getActualColumnName()
-                            .equalsIgnoreCase(columnName)) {
+                    if (introspectedColumn.getActualColumnName().equalsIgnoreCase(columnName)) {
                         return introspectedColumn;
                     }
                 }
@@ -192,13 +205,11 @@ public abstract class IntrospectedTable {
             // search base columns
             for (IntrospectedColumn introspectedColumn : baseColumns) {
                 if (introspectedColumn.isColumnNameDelimited()) {
-                    if (introspectedColumn.getActualColumnName().equals(
-                            columnName)) {
+                    if (introspectedColumn.getActualColumnName().equals(columnName)) {
                         return introspectedColumn;
                     }
                 } else {
-                    if (introspectedColumn.getActualColumnName()
-                            .equalsIgnoreCase(columnName)) {
+                    if (introspectedColumn.getActualColumnName().equalsIgnoreCase(columnName)) {
                         return introspectedColumn;
                     }
                 }
@@ -207,13 +218,11 @@ public abstract class IntrospectedTable {
             // search blob columns
             for (IntrospectedColumn introspectedColumn : blobColumns) {
                 if (introspectedColumn.isColumnNameDelimited()) {
-                    if (introspectedColumn.getActualColumnName().equals(
-                            columnName)) {
+                    if (introspectedColumn.getActualColumnName().equals(columnName)) {
                         return introspectedColumn;
                     }
                 } else {
-                    if (introspectedColumn.getActualColumnName()
-                            .equalsIgnoreCase(columnName)) {
+                    if (introspectedColumn.getActualColumnName().equalsIgnoreCase(columnName)) {
                         return introspectedColumn;
                     }
                 }
@@ -552,7 +561,6 @@ public abstract class IntrospectedTable {
         //条件查询
         setSelectBySelectiveStatementId("selectBySelective"); //$NON-NLS-1$
         setSelectCountBySelectiveStatementId("selectCountBySelective"); //$NON-NLS-1$
-        
         
         
         setUpdateByExampleStatementId("updateByExample"); //$NON-NLS-1$

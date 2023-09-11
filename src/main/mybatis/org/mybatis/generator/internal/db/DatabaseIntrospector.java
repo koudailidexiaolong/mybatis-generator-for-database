@@ -54,6 +54,7 @@ import org.mybatis.generator.logging.Log;
 import org.mybatis.generator.logging.LogFactory;
 
 /**
+ * 数据库元数据对象
  * @author Jeff Butler
  */
 public class DatabaseIntrospector {
@@ -225,7 +226,7 @@ public class DatabaseIntrospector {
 
         return introspectedTables;
     }
-
+    //删除忽略的字段
     private void removeIgnoredColumns(TableConfiguration tc,
             Map<ActualTableName, List<IntrospectedColumn>> columns) {
         for (Map.Entry<ActualTableName, List<IntrospectedColumn>> entry : columns

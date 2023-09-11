@@ -50,7 +50,7 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
     // TODO - remove when we get to JDK 8
     private static final int TIME_WITH_TIMEZONE = 2013;
     private static final int TIMESTAMP_WITH_TIMEZONE = 2014;
-
+    //java 类型 对应 jdbc类型 匹配
     public JavaTypeResolverDefaultImpl() {
         super();
         properties = new Properties();
@@ -132,15 +132,13 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
                 new FullyQualifiedJavaType("java.time.OffsetDateTime"))); //$NON-NLS-1$
     }
 
+    //添加配置
     @Override
     public void addConfigurationProperties(Properties properties) {
         this.properties.putAll(properties);
-        forceBigDecimals = StringUtility
-                .isTrue(properties
-                        .getProperty(PropertyRegistry.TYPE_RESOLVER_FORCE_BIG_DECIMALS));
-        useJSR310Types = StringUtility
-                .isTrue(properties
-                        .getProperty(PropertyRegistry.TYPE_RESOLVER_USE_JSR310_TYPES));
+        //读取 decimals 类型设置
+        forceBigDecimals = StringUtility.isTrue(properties.getProperty(PropertyRegistry.TYPE_RESOLVER_FORCE_BIG_DECIMALS));
+        useJSR310Types = StringUtility.isTrue(properties.getProperty(PropertyRegistry.TYPE_RESOLVER_USE_JSR310_TYPES));
     }
 
     @Override
@@ -272,6 +270,7 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
         this.context = context;
     }
 
+    // 数据库类型对象
     public static class JdbcTypeInformation {
         private String jdbcTypeName;
 

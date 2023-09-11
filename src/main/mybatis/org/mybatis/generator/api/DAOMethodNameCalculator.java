@@ -49,8 +49,7 @@ public interface DAOMethodNameCalculator {
      *            the introspected table
      * @return the calculated name
      */
-    String getUpdateByPrimaryKeyWithoutBLOBsMethodName(
-            IntrospectedTable introspectedTable);
+    String getUpdateByPrimaryKeyWithoutBLOBsMethodName(IntrospectedTable introspectedTable);
 
     /**
      * Calculates and returns a name for the update by primary key with BLOBs method.
@@ -59,8 +58,7 @@ public interface DAOMethodNameCalculator {
      *            the introspected table
      * @return the calculated name
      */
-    String getUpdateByPrimaryKeyWithBLOBsMethodName(
-            IntrospectedTable introspectedTable);
+    String getUpdateByPrimaryKeyWithBLOBsMethodName(IntrospectedTable introspectedTable);
 
     /**
      * Calculates and returns a name for the update by primary key selective method.
@@ -69,8 +67,7 @@ public interface DAOMethodNameCalculator {
      *            the introspected table
      * @return the calculated name
      */
-    String getUpdateByPrimaryKeySelectiveMethodName(
-            IntrospectedTable introspectedTable);
+    String getUpdateByPrimaryKeySelectiveMethodName(IntrospectedTable introspectedTable);
 
     /**
      * Calculates and returns a name for the select by primary key method.
@@ -81,6 +78,17 @@ public interface DAOMethodNameCalculator {
      */
     String getSelectByPrimaryKeyMethodName(IntrospectedTable introspectedTable);
 
+    
+    /**
+     * Calculates and returns a name for the select by primary key method.
+     * 全字段查询
+     * @param introspectedTable
+     *            the introspected table
+     * @return the calculated name
+     */
+    String getSelectBySelectiveMethodName(IntrospectedTable introspectedTable);
+
+    
     /**
      * Calculates and returns a name for the select by example method.
      *
@@ -88,8 +96,7 @@ public interface DAOMethodNameCalculator {
      *            the introspected table
      * @return the calculated name
      */
-    String getSelectByExampleWithoutBLOBsMethodName(
-            IntrospectedTable introspectedTable);
+    String getSelectByExampleWithoutBLOBsMethodName(IntrospectedTable introspectedTable);
 
     /**
      * Calculates and returns a name for the select by example with BLOBs method. If the table
@@ -100,8 +107,7 @@ public interface DAOMethodNameCalculator {
      *            the introspected table
      * @return the calculated name
      */
-    String getSelectByExampleWithBLOBsMethodName(
-            IntrospectedTable introspectedTable);
+    String getSelectByExampleWithBLOBsMethodName(IntrospectedTable introspectedTable);
 
     /**
      * Calculates and returns a name for the delete by primary key method.

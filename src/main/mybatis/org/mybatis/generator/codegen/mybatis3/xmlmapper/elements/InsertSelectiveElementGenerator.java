@@ -25,6 +25,7 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.ListUtilities;
 import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
 import org.mybatis.generator.config.GeneratedKey;
+import org.mybatis.generator.internal.DefaultCommentGenerator;
 
 
 /**
@@ -49,7 +50,8 @@ public class InsertSelectiveElementGenerator extends AbstractXmlElementGenerator
         answer.addAttribute(new Attribute("parameterType", parameterType.getFullyQualifiedName())); //$NON-NLS-1$
 
         context.getCommentGenerator().addComment(answer);
-
+        //获取系统配置
+        DefaultCommentGenerator defaultCommentGenerator = (DefaultCommentGenerator) context.getCommentGenerator();
         GeneratedKey gk = introspectedTable.getGeneratedKey();
         if (gk != null) {
             IntrospectedColumn introspectedColumn = introspectedTable.getColumn(gk.getColumn());
@@ -117,10 +119,14 @@ public class InsertSelectiveElementGenerator extends AbstractXmlElementGenerator
 	            sb.append(introspectedColumn.getJavaProperty());
 	            sb.append(" != null"); //$NON-NLS-1$
             }else{
-            	sb.append(introspectedColumn.getJavaProperty());
-                sb.append(" != null and "); //$NON-NLS-1$
                 sb.append(introspectedColumn.getJavaProperty());
-                sb.append(" != '' ");
+                sb.append(" != null "); //$NON-NLS-1$
+                //阻止 追加
+                if(defaultCommentGenerator.isSuppressXMLMethodEmptyString() == false){
+                    sb.append(" and "); //$NON-NLS-1$
+                    sb.append(introspectedColumn.getJavaProperty());
+                    sb.append(" != '' "); //$NON-NLS-1$
+                }
             }
             insertNotNullElement.addAttribute(new Attribute("test", sb.toString())); //$NON-NLS-1$
 
@@ -141,10 +147,14 @@ public class InsertSelectiveElementGenerator extends AbstractXmlElementGenerator
             	sb.append(introspectedColumn.getJavaProperty());
                 sb.append(" != null "); //$NON-NLS-1$
             }else{
-            	sb.append(introspectedColumn.getJavaProperty());
-                sb.append(" != null and "); //$NON-NLS-1$
                 sb.append(introspectedColumn.getJavaProperty());
-                sb.append(" != '' ");
+                sb.append(" != null "); //$NON-NLS-1$
+                //阻止 追加
+                if(defaultCommentGenerator.isSuppressXMLMethodEmptyString() == false){
+                    sb.append(" and "); //$NON-NLS-1$
+                    sb.append(introspectedColumn.getJavaProperty());
+                    sb.append(" != '' "); //$NON-NLS-1$
+                }
             }
             valuesNotNullElement.addAttribute(new Attribute("test", sb.toString())); //$NON-NLS-1$
 

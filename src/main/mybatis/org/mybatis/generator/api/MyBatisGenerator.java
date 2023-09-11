@@ -112,7 +112,9 @@ public class MyBatisGenerator {
         } else {
             this.warnings = warnings;
         }
+        //java 文件生成
         generatedJavaFiles = new ArrayList<GeneratedJavaFile>();
+        //xml文件生成
         generatedXmlFiles = new ArrayList<GeneratedXmlFile>();
         projects = new HashSet<String>();
 
@@ -192,7 +194,7 @@ public class MyBatisGenerator {
     /**
      * This is the main method for generating code. This method is long running, but progress can be provided and the
      * method can be cancelled through the ProgressCallback interface.
-     *
+     * 生成方法
      * @param callback
      *            an instance of the ProgressCallback interface, or <code>null</code> if you do not require progress
      *            information
@@ -221,10 +223,13 @@ public class MyBatisGenerator {
         if (callback == null) {
             callback = new NullProgressCallback();
         }
-
+        //清空 java 对象 
         generatedJavaFiles.clear();
+        //清空  xml 文件对象
         generatedXmlFiles.clear();
+        //重置对象工厂
         ObjectFactory.reset();
+        //重置对象
         RootClassInfo.reset();
 
         // calculate the contexts to run
@@ -254,11 +259,10 @@ public class MyBatisGenerator {
         callback.introspectionStarted(totalSteps);
 
         for (Context context : contextsToRun) {
-            context.introspectTables(callback, warnings,
-                    fullyQualifiedTableNames);
+            context.introspectTables(callback, warnings,fullyQualifiedTableNames);
         }
 
-        // now run the generates
+        // now run the generates 开始执行 生成的方法
         totalSteps = 0;
         for (Context context : contextsToRun) {
             totalSteps += context.getGenerationSteps();
@@ -266,22 +270,22 @@ public class MyBatisGenerator {
         callback.generationStarted(totalSteps);
 
         for (Context context : contextsToRun) {
-            context.generateFiles(callback, generatedJavaFiles,
-                    generatedXmlFiles, warnings);
+            context.generateFiles(callback, generatedJavaFiles,generatedXmlFiles, warnings);
         }
 
         // now save the files
         if (writeFiles) {
-            callback.saveStarted(generatedXmlFiles.size()
-                    + generatedJavaFiles.size());
+            callback.saveStarted(generatedXmlFiles.size() + generatedJavaFiles.size());
 
             for (GeneratedXmlFile gxf : generatedXmlFiles) {
                 projects.add(gxf.getTargetProject());
+                //生成xml文件
                 writeGeneratedXmlFile(gxf, callback);
             }
 
             for (GeneratedJavaFile gjf : generatedJavaFiles) {
                 projects.add(gjf.getTargetProject());
+                //生成java 文件
                 writeGeneratedJavaFile(gjf, callback);
             }
 
@@ -298,15 +302,11 @@ public class MyBatisGenerator {
         File targetFile;
         String source;
         try {
-            File directory = shellCallback.getDirectory(gjf
-                    .getTargetProject(), gjf.getTargetPackage());
+            File directory = shellCallback.getDirectory(gjf.getTargetProject(), gjf.getTargetPackage());
             targetFile = new File(directory, gjf.getFileName());
             if (targetFile.exists()) {
                 if (shellCallback.isMergeSupported()) {
-                    source = shellCallback.mergeJavaFile(gjf
-                            .getFormattedContent(), targetFile,
-                            MergeConstants.OLD_ELEMENT_TAGS,
-                            gjf.getFileEncoding());
+                    source = shellCallback.mergeJavaFile(gjf.getFormattedContent(), targetFile,MergeConstants.OLD_ELEMENT_TAGS,gjf.getFileEncoding());
                 } else if (shellCallback.isOverwriteEnabled()) {
                     source = gjf.getFormattedContent();
                     warnings.add(getString("Warning.11", //$NON-NLS-1$
@@ -323,8 +323,7 @@ public class MyBatisGenerator {
             }
 
             callback.checkCancel();
-            callback.startTask(getString(
-                    "Progress.15", targetFile.getName())); //$NON-NLS-1$
+            callback.startTask(getString("Progress.15", targetFile.getName())); //$NON-NLS-1$
             writeFile(targetFile, source, gjf.getFileEncoding());
         } catch (ShellException e) {
             warnings.add(e.getMessage());

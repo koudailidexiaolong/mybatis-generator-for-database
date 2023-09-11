@@ -14,30 +14,38 @@
 		生成最基本的增删该查操作 Ibatis2Java2 针对ibatis Ibatis2Java5 针对ibatis
 	-->
 	<context id="mysql" targetRuntime="MyBatis3">
-		<!-- 是否包含注释  true 包含-->
+	
 		<commentGenerator>
-			<!-- 是否阻止所有的注释生成 -->
+			<!-- 是否去除所有的注释生成  false 不阻止  true 没有注释-->
 			<property name="suppressAllComments" value="false" />
-			<!-- 是否阻止增加日期注释 -->
-			<property name="suppressDate" value="true" />
-			<!-- 是否阻止生成默认注释  -->
-			<property name="suppressDefaultDesc" value="true" />
-			<!-- XML注释  是否不生成  false 为 生成 true 为 跳过不生成-->
+			<!-- 是否阻止xml中生成注释  true为阻止生成 -->
 			<property name="suppressXMLComments" value="true" />
-			<!-- 生成的方法中是否增加注释  -->
-			<property name="suppressMethodComments" value="true" />
-			<!-- 格式化生成日期注释 -->
-			<property name="dateFormat" value="yyyy-MM-dd hh:mm:ss"/>
+		
+			<!-- 是否阻止生成默认注释  -->
+			<property name="suppressDefaultDescription" value="false" />
+			
+			<!-- 是否阻止生成的方法中增加注释  -->
+			<property name="suppressMethodComments" value="false" />
+			
 			<!-- 是否在类中增加注释 -->
-			<property name="addRemarkComments" value="true"></property>
+			<property name="addRemarkComments" value="true" />
+			
+			<!-- 是否阻止增加日期注释 -->
+			<property name="suppressDate" value="false" />
+			<!-- 格式化生成日期注释 -->
+	        <property name="dateFormat" value="yyyy-MM-dd hh:mm:ss"/>
+			<!-- 是否阻止sql条件判断中增加 空字符串判断 -->
+			<property name="suppressXMLMethodEmptyString" value="true" />
+
+				
 		</commentGenerator>
 		
 		
 		<!--配置数据库连接  -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
 			connectionURL="jdbc:mysql://192.168.10.222:3306/system_mysql" password="root" userId="root">
-			 <!-- 针对oracle数据库 -->
-            <property name="remarksReporting" value="true"></property>
+			 <!-- 针对mysql数据库 -->
+            <property name="useInformationSchema" value="true"></property>
 		</jdbcConnection>
 		<!--
 			java类型处理器 用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
@@ -51,21 +59,19 @@
 			replaceString="" />
 		-->
 
-		<!--
-			生成的entity -->
-
-		
-		<javaModelGenerator targetPackage="com.julongtech.user.dao.entity" targetProject="src/main/java">
+		<!-- 生成的entity -->
+		<javaModelGenerator targetPackage="com.julongtech.user.dao.entity" targetProject="src/test/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
+
 		<!-- 生成的mapper -->
-		<sqlMapGenerator targetPackage="com.julongtech.user.dao.mapper" targetProject="src/main/java">
+		<sqlMapGenerator targetPackage="com.julongtech.user.dao.mapper" targetProject="src/test/java">
 			<property name="enableSubPackages" value="true" />
 		
 		</sqlMapGenerator>
 		<!-- 生成的dao -->
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.julongtech.user.dao"  targetProject="src/main/java"> 
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.julongtech.user.dao"  targetProject="src/test/java"> 
 				<property name="enableSubPackages" value="true" /> 
 		</javaClientGenerator>
 		

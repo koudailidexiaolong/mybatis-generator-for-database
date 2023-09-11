@@ -60,7 +60,7 @@ public class TableConfiguration extends PropertyHolder {
      * @author julong
      * @date 2023年8月3日 下午10:43:46
      */
-    private boolean selectBySelectiveEnabled;
+    private boolean selectBySelectiveStatementEnabled;
 
     private boolean selectByExampleStatementEnabled;
 
@@ -82,12 +82,15 @@ public class TableConfiguration extends PropertyHolder {
 
     private String selectByPrimaryKeyQueryId;
 
+    private String selectBySelectiveQueryId;
+
     private String selectByExampleQueryId;
 
     private String catalog;
 
     private String schema;
 
+    //表名
     private String tableName;
 
     private String domainObjectName;
@@ -108,7 +111,9 @@ public class TableConfiguration extends PropertyHolder {
 
     private boolean isAllColumnDelimitingEnabled;
 
+    //指定类名
     private String mapperName;
+    
     private String sqlProviderName;
 
     private List<IgnoredColumnPattern> ignoredColumnPatterns = new ArrayList<IgnoredColumnPattern>();
@@ -123,6 +128,7 @@ public class TableConfiguration extends PropertyHolder {
 
         insertStatementEnabled = true;
         selectByPrimaryKeyStatementEnabled = true;
+        selectBySelectiveStatementEnabled = true;
         selectByExampleStatementEnabled = true;
         updateByPrimaryKeyStatementEnabled = true;
         deleteByPrimaryKeyStatementEnabled = true;
@@ -150,17 +156,6 @@ public class TableConfiguration extends PropertyHolder {
 
     public boolean isSelectByPrimaryKeyStatementEnabled() {
         return selectByPrimaryKeyStatementEnabled;
-    }
-
-    /**
-     * 全字段查询
-     * @return
-     * @author julong
-     * @date 2023年8月3日 下午10:44:19
-     * @desc
-     */
-    public boolean isSelectBySelectiveStatementEnabled() {
-        return selectBySelectiveEnabled;
     }
 
     public void setSelectByPrimaryKeyStatementEnabled(
@@ -293,6 +288,14 @@ public class TableConfiguration extends PropertyHolder {
         this.selectByPrimaryKeyQueryId = selectByPrimaryKeyQueryId;
     }
 
+    public String getSelectBySelectiveQueryId() {
+        return selectBySelectiveQueryId;
+    }
+
+    public void setSelectBySelectiveQueryId(String selectBySelectiveQueryId) {
+        this.selectBySelectiveQueryId = selectBySelectiveQueryId;
+    }
+
     public boolean isDeleteByExampleStatementEnabled() {
         return deleteByExampleStatementEnabled;
     }
@@ -303,7 +306,7 @@ public class TableConfiguration extends PropertyHolder {
 
     public boolean areAnyStatementsEnabled() {
         return selectByExampleStatementEnabled
-                || selectByPrimaryKeyStatementEnabled || insertStatementEnabled
+                || selectByPrimaryKeyStatementEnabled || insertStatementEnabled || selectBySelectiveStatementEnabled
                 || updateByPrimaryKeyStatementEnabled
                 || deleteByExampleStatementEnabled
                 || deleteByPrimaryKeyStatementEnabled
@@ -426,6 +429,10 @@ public class TableConfiguration extends PropertyHolder {
             xmlElement.addAttribute(new Attribute("enableSelectByPrimaryKey", "false")); //$NON-NLS-1$ //$NON-NLS-2$
         }
 
+        if (!selectBySelectiveStatementEnabled) {
+            xmlElement.addAttribute(new Attribute("enableSelectBySelective", "false")); //$NON-NLS-1$ //$NON-NLS-2$
+        }
+
         if (!selectByExampleStatementEnabled) {
             xmlElement.addAttribute(new Attribute(
                     "enableSelectByExample", "false")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -457,13 +464,15 @@ public class TableConfiguration extends PropertyHolder {
         }
 
         if (stringHasValue(selectByPrimaryKeyQueryId)) {
-            xmlElement.addAttribute(new Attribute(
-                    "selectByPrimaryKeyQueryId", selectByPrimaryKeyQueryId)); //$NON-NLS-1$
+            xmlElement.addAttribute(new Attribute("selectByPrimaryKeyQueryId", selectByPrimaryKeyQueryId)); //$NON-NLS-1$
+        }
+
+        if (stringHasValue(selectBySelectiveQueryId)) {
+            xmlElement.addAttribute(new Attribute("selectBySelectiveQueryId", selectBySelectiveQueryId)); //$NON-NLS-1$
         }
 
         if (stringHasValue(selectByExampleQueryId)) {
-            xmlElement.addAttribute(new Attribute(
-                    "selectByExampleQueryId", selectByExampleQueryId)); //$NON-NLS-1$
+            xmlElement.addAttribute(new Attribute("selectByExampleQueryId", selectByExampleQueryId)); //$NON-NLS-1$
         }
 
         if (configuredModelType != null) {

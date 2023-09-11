@@ -96,7 +96,7 @@ public class BaseRecordGenerator extends AbstractJavaGenerator {
                 topLevelClass.addField(field);
                 topLevelClass.addImportedType(field.getType());
             }
-
+            //get方法 生成
             Method method = getJavaBeansGetter(introspectedColumn, context, introspectedTable);
             if (plugins.modelGetterMethodGenerated(method, topLevelClass,
                     introspectedColumn, introspectedTable,
