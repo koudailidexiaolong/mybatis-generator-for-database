@@ -88,7 +88,15 @@ public interface DAOMethodNameCalculator {
      */
     String getSelectBySelectiveMethodName(IntrospectedTable introspectedTable);
 
-    
+    /**
+     * Calculates and returns a name for the select count by params  method.
+     * 查询总数
+     * @param introspectedTable
+     *            the introspected table
+     * @return the calculated name
+     */
+    String getSelectCountBySelectiveMethodName(IntrospectedTable introspectedTable);
+
     /**
      * Calculates and returns a name for the select by example method.
      *

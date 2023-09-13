@@ -135,6 +135,12 @@ public class DefaultDAOMethodNameCalculator implements DAOMethodNameCalculator {
 		// TODO Auto-generated method stub
 		return "selectBySelective";
 	}
+    
+    @Override
+    public String getSelectCountBySelectiveMethodName(IntrospectedTable introspectedTable) {
+    	// TODO Auto-generated method stub
+    	return "selectCountBySelective";
+    }
 
 	@Override
     public String getUpdateByPrimaryKeySelectiveMethodName(IntrospectedTable introspectedTable) {

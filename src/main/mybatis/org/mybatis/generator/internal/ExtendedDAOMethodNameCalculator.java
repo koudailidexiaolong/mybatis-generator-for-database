@@ -183,6 +183,18 @@ public class ExtendedDAOMethodNameCalculator implements DAOMethodNameCalculator 
 
           return sb.toString();
 	}
+    
+    
+    @Override
+	public String getSelectCountBySelectiveMethodName(IntrospectedTable introspectedTable) {
+		// TODO Auto-generated method stub
+    	  StringBuilder sb = new StringBuilder();
+          sb.append("selectCount"); //$NON-NLS-1$
+          sb.append(introspectedTable.getFullyQualifiedTable().getDomainObjectName());
+          sb.append("BySelective"); //$NON-NLS-1$
+
+          return sb.toString();
+	}
 
 	@Override
     public String getUpdateByPrimaryKeySelectiveMethodName(IntrospectedTable introspectedTable) {
