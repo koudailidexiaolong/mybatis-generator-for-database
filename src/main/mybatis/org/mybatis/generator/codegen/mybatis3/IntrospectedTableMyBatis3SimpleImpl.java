@@ -81,8 +81,7 @@ public class IntrospectedTableMyBatis3SimpleImpl extends IntrospectedTableMyBati
             ProgressCallback progressCallback) {
 
         AbstractJavaGenerator javaGenerator = new SimpleModelGenerator();
-        initializeAbstractGenerator(javaGenerator, warnings,
-                progressCallback);
+        initializeAbstractGenerator(javaGenerator, warnings, progressCallback);
         javaModelGenerators.add(javaGenerator);
     }
 }

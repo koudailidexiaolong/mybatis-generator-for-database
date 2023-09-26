@@ -40,7 +40,8 @@ public class SelectCountBySelectiveMethodGenerator extends AbstractJavaMapperMet
 
 	@Override
     public void addInterfaceElements(Interface interfaze) {
-        Method method = new Method();
+
+		Method method = new Method();
 
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.setVisibility(JavaVisibility.PUBLIC);
@@ -48,6 +49,7 @@ public class SelectCountBySelectiveMethodGenerator extends AbstractJavaMapperMet
 
         FullyQualifiedJavaType parameterType = introspectedTable.getRules().calculateAllFieldsClass();
 
+        
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
         importedTypes.add(parameterType);
         method.addParameter(new Parameter(parameterType, "record")); //$NON-NLS-1$

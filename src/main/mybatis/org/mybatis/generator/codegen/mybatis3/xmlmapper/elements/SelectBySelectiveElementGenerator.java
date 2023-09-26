@@ -15,9 +15,9 @@
  */
 package org.mybatis.generator.codegen.mybatis3.xmlmapper.elements;
 
-import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
-
 import java.sql.Types;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
@@ -87,23 +87,36 @@ public class SelectBySelectiveElementGenerator extends AbstractXmlElementGenerat
         //条件查询
         XmlElement dynamicElement = new XmlElement("where"); //$NON-NLS-1$
 		answer.addElement(dynamicElement);
-        
+        Set<Integer> sets = new HashSet<Integer>();
+        sets.add(Types.BIGINT);
+        sets.add(Types.BIT);
+        sets.add(Types.DATE);
+        sets.add(Types.DECIMAL);
+        sets.add(Types.BOOLEAN);
+        sets.add(Types.TINYINT);
+        sets.add(Types.DOUBLE);
+        sets.add(Types.FLOAT);
+        sets.add(Types.INTEGER);
+        sets.add(Types.NUMERIC);
+        sets.add(Types.TIME);
+        sets.add(Types.TIMESTAMP);
+        sets.add(Types.TIMESTAMP_WITH_TIMEZONE);
+        sets.add(Types.TIME_WITH_TIMEZONE);
 		for (IntrospectedColumn introspectedColumn : ListUtilities.removeGeneratedAlwaysColumns(introspectedTable.getAllColumns())) {
 			sb.setLength(0);
 			XmlElement isNotNullElement = new XmlElement("if"); //$NON-NLS-1$
-			if(introspectedColumn.getJdbcType() != Types.VARCHAR && introspectedColumn.getJdbcType() != Types.CHAR && introspectedColumn.getJdbcType() != Types.NVARCHAR
-					 && introspectedColumn.getJdbcType() != Types.NCHAR){
+			if(sets.contains(introspectedColumn.getJdbcType())){
 				sb.append(introspectedColumn.getJavaProperty());
 				sb.append(" != null "); //$NON-NLS-1$
 			}else{
 				sb.append(introspectedColumn.getJavaProperty());
 				sb.append(" != null "); //$NON-NLS-1$
                 //阻止 追加
-                if(defaultCommentGenerator.isSuppressXMLMethodEmptyString() == false){
-                    sb.append(" and "); //$NON-NLS-1$
-                    sb.append(introspectedColumn.getJavaProperty());
-                    sb.append(" != '' "); //$NON-NLS-1$
-                }
+//                if(defaultCommentGenerator.isSuppressXMLMethodEmptyString() == false){
+                sb.append(" and "); //$NON-NLS-1$
+                sb.append(introspectedColumn.getJavaProperty());
+                sb.append(" != '' "); //$NON-NLS-1$
+//                }
 
 			}
 			isNotNullElement.addAttribute(new Attribute("test", sb.toString())); //$NON-NLS-1$

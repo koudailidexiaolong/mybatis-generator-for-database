@@ -116,6 +116,7 @@ public class MyBatisGenerator {
         generatedJavaFiles = new ArrayList<GeneratedJavaFile>();
         //xml文件生成
         generatedXmlFiles = new ArrayList<GeneratedXmlFile>();
+        
         projects = new HashSet<String>();
 
         this.configuration.validate();

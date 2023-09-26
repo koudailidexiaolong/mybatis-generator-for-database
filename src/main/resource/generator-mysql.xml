@@ -32,24 +32,25 @@
 			
 			<!-- 是否阻止增加日期注释 -->
 			<property name="suppressDate" value="false" />
+			
 			<!-- 格式化生成日期注释 -->
 	        <property name="dateFormat" value="yyyy-MM-dd hh:mm:ss"/>
+	        
 			<!-- 是否阻止sql条件判断中增加 空字符串判断 -->
 			<property name="suppressXMLMethodEmptyString" value="true" />
-
 				
 		</commentGenerator>
 		
 		
 		<!--配置数据库连接  -->
-		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://192.168.10.222:3306/system_mysql" password="root" userId="root">
+			<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.10.222:3306/system_mysql" password="root" userId="root"> -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://211.149.130.188:3306/tms-manager" password="6uPg2H1g" userId="admin">
 			 <!-- 针对mysql数据库 -->
             <property name="useInformationSchema" value="true"></property>
 		</jdbcConnection>
 		<!--
-			java类型处理器 用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
-			注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型；
+			java类型处理器 用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl
+			注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型
 		-->
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
@@ -60,18 +61,18 @@
 		-->
 
 		<!-- 生成的entity -->
-		<javaModelGenerator targetPackage="com.julongtech.user.dao.entity" targetProject="src/test/java">
+		
+		<javaModelGenerator targetPackage="com.meina.wechat.dao.entity" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
-
 		<!-- 生成的mapper -->
-		<sqlMapGenerator targetPackage="com.julongtech.user.dao.mapper" targetProject="src/test/java">
+		<sqlMapGenerator targetPackage="com.meina.wechat.dao.mapper" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		
 		</sqlMapGenerator>
 		<!-- 生成的dao -->
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.julongtech.user.dao"  targetProject="src/test/java"> 
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.meina.wechat.dao"  targetProject="src/main/java"> 
 				<property name="enableSubPackages" value="true" /> 
 		</javaClientGenerator>
 		
@@ -87,10 +88,10 @@
 			name="useColumnIndexes" value="true"/> </table>
 		-->
 
-	 	<table  tableName="system_user" domainObjectName="SystemUserInfo" mapperName="SystemUserMapper" 
+	 	<table  tableName="organ" domainObjectName="Organ" 
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false" >
+			selectByExampleQueryId="false"  >
 			<property name="useActualColumnNames" value="false" />
 			<property name="useColumnIndexes" value="true" />
 		</table>

@@ -47,6 +47,13 @@ public class MergeConstants {
      */
     public static final String NEW_ELEMENT_TAG = "@author julong"; //$NON-NLS-1$
     
+    /**
+     * 日期
+     * @author julong
+     * @date 2023年9月21日 下午5:53:30
+     */
+    public static final String NEW_ELEMENT_DATE_TAG = "@date"; //$NON-NLS-1$
+    
     public static final String[] OLD_ELEMENT_TAGS = {
             "@ibatorgenerated", //$NON-NLS-1$
             "@abatorgenerated", //$NON-NLS-1$
