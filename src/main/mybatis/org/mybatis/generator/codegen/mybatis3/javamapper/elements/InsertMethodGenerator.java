@@ -23,6 +23,7 @@ import org.mybatis.generator.api.dom.java.Interface;
 import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
+import org.mybatis.generator.internal.util.StringUtility;
 
 /**
  * 
@@ -54,7 +55,12 @@ public class InsertMethodGenerator extends AbstractJavaMapperMethodGenerator {
 
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
         importedTypes.add(parameterType);
-        method.addParameter(new Parameter(parameterType, "record")); //$NON-NLS-1$
+        
+        //组装参数名
+        String paramName = parameterType.getShortNameWithoutTypeArguments();
+        String record = FullyQualifiedJavaType.getParameterAlias(paramName);
+        
+        method.addParameter(new Parameter(parameterType, record)); //$NON-NLS-1$
 
         context.getCommentGenerator().addGeneralMethodComment(method,introspectedTable);
 

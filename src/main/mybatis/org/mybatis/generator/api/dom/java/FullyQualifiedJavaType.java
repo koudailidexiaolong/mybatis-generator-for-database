@@ -216,6 +216,13 @@ public class FullyQualifiedJavaType implements
         return sb.toString();
     }
 
+    /**
+     * 文件名
+     * @return
+     * @author julong
+     * @date 2023年9月27日 下午3:17:15
+     * @desc
+     */
     public String getShortNameWithoutTypeArguments() {
         return baseShortName;
     }
@@ -503,6 +510,20 @@ public class FullyQualifiedJavaType implements
         int index = baseQualifiedName.lastIndexOf('.');
         return baseQualifiedName.substring(0, index);
     }
+    
+    
+    /**
+     * 获取类名称小写
+     * @param clazzName
+     * @return
+     * @author julong
+     * @date 2023年9月27日 下午3:32:50
+     * @desc
+     */
+    public static String getParameterAlias(String clazzName){
+        return String.valueOf(clazzName.charAt(0)).toLowerCase() + clazzName.substring(1);
+    }
+    
 
     public boolean isArray() {
         return isArray;

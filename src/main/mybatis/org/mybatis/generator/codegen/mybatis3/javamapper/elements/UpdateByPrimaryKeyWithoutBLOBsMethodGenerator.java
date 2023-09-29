@@ -39,24 +39,23 @@ public class UpdateByPrimaryKeyWithoutBLOBsMethodGenerator extends
     @Override
     public void addInterfaceElements(Interface interfaze) {
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
-        FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(
-                introspectedTable.getBaseRecordType());
+        FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
         importedTypes.add(parameterType);
 
         Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.setName(introspectedTable.getUpdateByPrimaryKeyStatementId());
-        method.addParameter(new Parameter(parameterType, "record")); //$NON-NLS-1$
+        //组装参数名
+        String paramName = parameterType.getShortNameWithoutTypeArguments();
+        String record = FullyQualifiedJavaType.getParameterAlias(paramName);
+        method.addParameter(new Parameter(parameterType, record)); //$NON-NLS-1$
 
-        context.getCommentGenerator().addGeneralMethodComment(method,
-                introspectedTable);
+        context.getCommentGenerator().addGeneralMethodComment(method,introspectedTable);
 
         addMapperAnnotations(method);
         
-        if (context.getPlugins()
-                .clientUpdateByPrimaryKeyWithoutBLOBsMethodGenerated(method,
-                        interfaze, introspectedTable)) {
+        if (context.getPlugins().clientUpdateByPrimaryKeyWithoutBLOBsMethodGenerated(method,interfaze, introspectedTable)) {
             addExtraImports(interfaze);
             interfaze.addImportedTypes(importedTypes);
             interfaze.addMethod(method);

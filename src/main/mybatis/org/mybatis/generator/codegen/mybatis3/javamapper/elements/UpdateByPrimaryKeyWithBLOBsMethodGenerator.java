@@ -55,9 +55,11 @@ public class UpdateByPrimaryKeyWithBLOBsMethodGenerator extends
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
 
-        method.setName(introspectedTable
-                .getUpdateByPrimaryKeyWithBLOBsStatementId());
-        method.addParameter(new Parameter(parameterType, "record")); //$NON-NLS-1$
+        method.setName(introspectedTable.getUpdateByPrimaryKeyWithBLOBsStatementId());
+        //组装参数名
+        String paramName = parameterType.getShortNameWithoutTypeArguments();
+        String record = FullyQualifiedJavaType.getParameterAlias(paramName);
+        method.addParameter(new Parameter(parameterType, record)); //$NON-NLS-1$
 
         context.getCommentGenerator().addGeneralMethodComment(method,
                 introspectedTable);

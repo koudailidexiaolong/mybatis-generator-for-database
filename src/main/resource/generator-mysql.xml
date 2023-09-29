@@ -22,7 +22,7 @@
 			<property name="suppressXMLComments" value="true" />
 		
 			<!-- 是否阻止生成默认注释  -->
-			<property name="suppressDefaultDescription" value="false" />
+			<property name="suppressDefaultDescription" value="true" />
 			
 			<!-- 是否阻止生成的方法中增加注释  -->
 			<property name="suppressMethodComments" value="false" />
@@ -54,6 +54,7 @@
 		-->
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
+			<property name="useJSR310Types" value="true"/>
 		</javaTypeResolver>
 		<!--
 			去除数据库中生成bean的相同前缀字符 <columnRenamingRule searchString="^CUST_"
@@ -62,17 +63,17 @@
 
 		<!-- 生成的entity -->
 		
-		<javaModelGenerator targetPackage="com.meina.wechat.dao.entity" targetProject="src/main/java">
+		<javaModelGenerator targetPackage="com.meina.file.pojo.entity" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 		<!-- 生成的mapper -->
-		<sqlMapGenerator targetPackage="com.meina.wechat.dao.mapper" targetProject="src/main/java">
+		<sqlMapGenerator targetPackage="com.meina.file.dao.mapper" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		
 		</sqlMapGenerator>
 		<!-- 生成的dao -->
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.meina.wechat.dao"  targetProject="src/main/java"> 
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.meina.file.dao"  targetProject="src/main/java"> 
 				<property name="enableSubPackages" value="true" /> 
 		</javaClientGenerator>
 		
@@ -88,7 +89,7 @@
 			name="useColumnIndexes" value="true"/> </table>
 		-->
 
-	 	<table  tableName="organ" domainObjectName="Organ" 
+	 	<table  tableName="common_files" domainObjectName="CommonFiles" 
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"  >

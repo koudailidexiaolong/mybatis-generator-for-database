@@ -103,11 +103,9 @@ public abstract class AbstractJavaMapperMethodGenerator extends
         IntrospectedColumn introspectedColumn = introspectedTable.getColumn(gk.getColumn());
         if (introspectedColumn != null) {
             if (gk.isJdbcStandard()) {
-                interfaze.addImportedType(
-                        new FullyQualifiedJavaType("org.apache.ibatis.annotations.Options")); //$NON-NLS-1$
+                interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Options")); //$NON-NLS-1$
             } else {
-                interfaze.addImportedType(
-                        new FullyQualifiedJavaType("org.apache.ibatis.annotations.SelectKey")); //$NON-NLS-1$
+                interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.SelectKey")); //$NON-NLS-1$
                 FullyQualifiedJavaType fqjt = introspectedColumn.getFullyQualifiedJavaType();
                 interfaze.addImportedType(fqjt);
             }
