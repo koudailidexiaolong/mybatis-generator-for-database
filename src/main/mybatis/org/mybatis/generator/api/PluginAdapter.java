@@ -280,6 +280,7 @@ public abstract class PluginAdapter implements Plugin {
         return true;
     }
 
+  
     @Override
     public boolean clientUpdateByPrimaryKeyWithBLOBsMethodGenerated(Method method,
             Interface interfaze, IntrospectedTable introspectedTable) {
@@ -459,7 +460,7 @@ public abstract class PluginAdapter implements Plugin {
             XmlElement element, IntrospectedTable introspectedTable) {
         return true;
     }
-
+  
     @Override
     public boolean sqlMapUpdateByPrimaryKeyWithBLOBsElementGenerated(
             XmlElement element, IntrospectedTable introspectedTable) {

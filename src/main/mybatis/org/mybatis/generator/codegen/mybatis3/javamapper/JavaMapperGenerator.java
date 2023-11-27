@@ -92,16 +92,16 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         addSelectByExampleWithBLOBsMethod(interfaze);
         addSelectByExampleWithoutBLOBsMethod(interfaze);
         addSelectByPrimaryKeyMethod(interfaze);
-        //TODO 自定义方法 
-        //自定义查询列表方法 SelectBySelective
+        //TODO 自定义查询列表方法 SelectBySelective
         addSelectBySelectiveMethod(interfaze);
-        //自定义查询总数方法 SelectCountBySelective
+        //TODO 自定义查询总数方法 SelectCountBySelective
         addSelectCountBySelectiveMethod(interfaze);
         
         addUpdateByExampleSelectiveMethod(interfaze);
         addUpdateByExampleWithBLOBsMethod(interfaze);
         addUpdateByExampleWithoutBLOBsMethod(interfaze);
         addUpdateByPrimaryKeySelectiveMethod(interfaze);
+        
         addUpdateByPrimaryKeyWithBLOBsMethod(interfaze);
         addUpdateByPrimaryKeyWithoutBLOBsMethod(interfaze);
 

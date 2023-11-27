@@ -333,8 +333,7 @@ public final class PluginAggregator implements Plugin {
 	}
 
 	@Override
-	public boolean sqlMapSelectCountBySelectiveElementGenerated(XmlElement element,
-			IntrospectedTable introspectedTable) {
+	public boolean sqlMapSelectCountBySelectiveElementGenerated(XmlElement element,IntrospectedTable introspectedTable) {
 		boolean rc = true;
 
 		for (Plugin plugin : plugins) {
@@ -362,8 +361,7 @@ public final class PluginAggregator implements Plugin {
 	}
 
 	@Override
-	public boolean sqlMapUpdateByExampleSelectiveElementGenerated(XmlElement element,
-			IntrospectedTable introspectedTable) {
+	public boolean sqlMapUpdateByExampleSelectiveElementGenerated(XmlElement element,IntrospectedTable introspectedTable) {
 		boolean rc = true;
 
 		for (Plugin plugin : plugins) {
@@ -377,8 +375,7 @@ public final class PluginAggregator implements Plugin {
 	}
 
 	@Override
-	public boolean sqlMapUpdateByExampleWithBLOBsElementGenerated(XmlElement element,
-			IntrospectedTable introspectedTable) {
+	public boolean sqlMapUpdateByExampleWithBLOBsElementGenerated(XmlElement element,IntrospectedTable introspectedTable) {
 		boolean rc = true;
 
 		for (Plugin plugin : plugins) {
@@ -392,8 +389,7 @@ public final class PluginAggregator implements Plugin {
 	}
 
 	@Override
-	public boolean sqlMapUpdateByExampleWithoutBLOBsElementGenerated(XmlElement element,
-			IntrospectedTable introspectedTable) {
+	public boolean sqlMapUpdateByExampleWithoutBLOBsElementGenerated(XmlElement element,IntrospectedTable introspectedTable) {
 		boolean rc = true;
 
 		for (Plugin plugin : plugins) {
@@ -407,8 +403,7 @@ public final class PluginAggregator implements Plugin {
 	}
 
 	@Override
-	public boolean sqlMapUpdateByPrimaryKeySelectiveElementGenerated(XmlElement element,
-			IntrospectedTable introspectedTable) {
+	public boolean sqlMapUpdateByPrimaryKeySelectiveElementGenerated(XmlElement element,IntrospectedTable introspectedTable) {
 		boolean rc = true;
 
 		for (Plugin plugin : plugins) {
@@ -420,7 +415,8 @@ public final class PluginAggregator implements Plugin {
 
 		return rc;
 	}
-
+	
+	
 	@Override
 	public boolean sqlMapUpdateByPrimaryKeyWithBLOBsElementGenerated(XmlElement element,
 			IntrospectedTable introspectedTable) {
@@ -963,6 +959,7 @@ public final class PluginAggregator implements Plugin {
 
 		return rc;
 	}
+	
 
 	@Override
 	public boolean clientUpdateByPrimaryKeySelectiveMethodGenerated(Method method, TopLevelClass topLevelClass,
@@ -978,6 +975,7 @@ public final class PluginAggregator implements Plugin {
 
 		return rc;
 	}
+
 
 	@Override
 	public boolean clientUpdateByPrimaryKeyWithBLOBsMethodGenerated(Method method, Interface interfaze,
@@ -1359,5 +1357,6 @@ public final class PluginAggregator implements Plugin {
 
 		return rc;
 	}
+
 
 }

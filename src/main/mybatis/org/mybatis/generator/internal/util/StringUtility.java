@@ -30,6 +30,14 @@ public class StringUtility {
         super();
     }
 
+    /**
+     * 判断是否存在值
+     * @param s
+     * @return
+     * @author julong
+     * @date 2023年11月25日 下午2:21:12
+     * @desc
+     */
     public static boolean stringHasValue(String s) {
         return s != null && s.length() > 0;
     }

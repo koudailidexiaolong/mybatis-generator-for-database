@@ -84,6 +84,7 @@ public interface Rules {
      * @return true if the element and method should be generated
      */
     boolean generateUpdateByPrimaryKeySelective();
+  
 
     /**
      * Implements the rule for generating the delete by primary key SQL Map

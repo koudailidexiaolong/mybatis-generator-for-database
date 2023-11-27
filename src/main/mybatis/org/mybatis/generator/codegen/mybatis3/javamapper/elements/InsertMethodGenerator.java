@@ -26,9 +26,10 @@ import org.mybatis.generator.api.dom.java.Parameter;
 import org.mybatis.generator.internal.util.StringUtility;
 
 /**
- * 
- * @author Jeff Butler
- * 
+ * 全字段插入方法
+ * @author julong
+ * @date 2023年11月25日 上午9:58:13
+ * @desc 
  */
 public class InsertMethodGenerator extends AbstractJavaMapperMethodGenerator {
 
@@ -42,9 +43,11 @@ public class InsertMethodGenerator extends AbstractJavaMapperMethodGenerator {
     @Override
     public void addInterfaceElements(Interface interfaze) {
         Method method = new Method();
-
+        //设置方法类型
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
+        //设置方法类型
         method.setVisibility(JavaVisibility.PUBLIC);
+        //设置方法名
         method.setName(introspectedTable.getInsertStatementId());
         FullyQualifiedJavaType parameterType;
         if (isSimple) {
@@ -60,10 +63,13 @@ public class InsertMethodGenerator extends AbstractJavaMapperMethodGenerator {
         String paramName = parameterType.getShortNameWithoutTypeArguments();
         String record = FullyQualifiedJavaType.getParameterAlias(paramName);
         
+        //设置方法参数
         method.addParameter(new Parameter(parameterType, record)); //$NON-NLS-1$
 
+        //设置方法注释
         context.getCommentGenerator().addGeneralMethodComment(method,introspectedTable);
 
+        //添加方法注解
         addMapperAnnotations(method);
 
         if (context.getPlugins().clientInsertMethodGenerated(method, interfaze,introspectedTable)) {

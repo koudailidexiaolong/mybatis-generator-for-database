@@ -202,8 +202,7 @@ public interface CommentGenerator {
      * 
      * @since 1.3.6
      */
-    void addGeneralMethodAnnotation(Method method, IntrospectedTable introspectedTable,
-            Set<FullyQualifiedJavaType> imports);
+    void addGeneralMethodAnnotation(Method method, IntrospectedTable introspectedTable,Set<FullyQualifiedJavaType> imports);
 
     /**
      * Adds a @Generated annotation to a method.
@@ -219,8 +218,7 @@ public interface CommentGenerator {
      * 
      * @since 1.3.6
      */
-    void addGeneralMethodAnnotation(Method method, IntrospectedTable introspectedTable,
-            IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> imports);
+    void addGeneralMethodAnnotation(Method method, IntrospectedTable introspectedTable,IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> imports);
     
     /**
      * Adds a @Generated annotation to a field.
@@ -234,8 +232,7 @@ public interface CommentGenerator {
      * 
      * @since 1.3.6
      */
-    void addFieldAnnotation(Field field, IntrospectedTable introspectedTable,
-            Set<FullyQualifiedJavaType> imports);
+    void addFieldAnnotation(Field field, IntrospectedTable introspectedTable,Set<FullyQualifiedJavaType> imports);
 
     /**
      * Adds a @Generated annotation to a field.
@@ -251,8 +248,7 @@ public interface CommentGenerator {
      * 
      * @since 1.3.6
      */
-    void addFieldAnnotation(Field field, IntrospectedTable introspectedTable,
-            IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> imports);
+    void addFieldAnnotation(Field field, IntrospectedTable introspectedTable,IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> imports);
 
     /**
      * Adds a @Generated annotation to a class.
@@ -266,6 +262,5 @@ public interface CommentGenerator {
      * 
      * @since 1.3.6
      */
-    void addClassAnnotation(InnerClass innerClass, IntrospectedTable introspectedTable,
-            Set<FullyQualifiedJavaType> imports);
+    void addClassAnnotation(InnerClass innerClass, IntrospectedTable introspectedTable,Set<FullyQualifiedJavaType> imports);
 }

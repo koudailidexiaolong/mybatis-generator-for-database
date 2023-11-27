@@ -179,6 +179,7 @@ public class RulesDelegate implements Rules {
         return rules.generateUpdateByPrimaryKeySelective();
     }
 
+
     @Override
     public boolean generateUpdateByPrimaryKeyWithBLOBs() {
         return rules.generateUpdateByPrimaryKeyWithBLOBs();

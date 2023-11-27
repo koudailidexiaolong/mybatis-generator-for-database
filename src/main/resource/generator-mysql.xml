@@ -9,6 +9,7 @@
 		JDBC 驱动路径 jar 如果已经将驱动包加入项目中 可以不用此段配置 此处可以使绝对路径，也可以是相对路径
 		<classPathEntry location="./lib/classes12.jar" />
 	-->
+	
 	<!--
 		targetRuntime 属性解释 官方给出了几种配置 MyBatis3 生成 待条件的增删该查 MyBatis3Simple
 		生成最基本的增删该查操作 Ibatis2Java2 针对ibatis Ibatis2Java5 针对ibatis
@@ -44,7 +45,9 @@
 		
 		<!--配置数据库连接  -->
 			<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.10.222:3306/system_mysql" password="root" userId="root"> -->
-		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://211.149.130.188:3306/tms-manager" password="6uPg2H1g" userId="admin">
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://211.149.164.52:3306/meina-tms" password="meina@123" userId="root">
+		<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/meina-tms?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false" password="root" userId="root"> -->
+		<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://211.149.130.188:3306/meina-tms" password="6uPg2H1g" userId="admin"> -->
 			 <!-- 针对mysql数据库 -->
             <property name="useInformationSchema" value="true"></property>
 		</jdbcConnection>
@@ -63,19 +66,20 @@
 
 		<!-- 生成的entity -->
 		
-		<javaModelGenerator targetPackage="com.meina.file.pojo.entity" targetProject="src/main/java">
+		<javaModelGenerator targetPackage="com.meina.transport.pojo.entity" targetProject="src/main/java" >
 			<property name="enableSubPackages" value="true" />
-			<property name="trimStrings" value="true" />
+			<property name="trimStrings" value="false" />
 		</javaModelGenerator>
+	
 		<!-- 生成的mapper -->
-		<sqlMapGenerator targetPackage="com.meina.file.dao.mapper" targetProject="src/main/java">
+		<sqlMapGenerator targetPackage="com.meina.transport.dao.mapper" targetProject="src/main/java" >
 			<property name="enableSubPackages" value="true" />
-		
 		</sqlMapGenerator>
 		<!-- 生成的dao -->
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.meina.file.dao"  targetProject="src/main/java"> 
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.meina.transport.dao"  targetProject="src/main/java" > 
 				<property name="enableSubPackages" value="true" /> 
 		</javaClientGenerator>
+		
 		
 		<!-- 需要生成的表 -->
 		<!--  如果为false(默认值)，MGB将会尝试将返回的名称转换为驼峰形式  -->
@@ -89,13 +93,13 @@
 			name="useColumnIndexes" value="true"/> </table>
 		-->
 
-	 	<table  tableName="common_files" domainObjectName="CommonFiles" 
+	 	<table  tableName="vehicle_driver_view1" domainObjectName="VehicleDriverView" 
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false"  >
+			selectByExampleQueryId="false"  enableSelectByPrimaryKey="true">
 			<property name="useActualColumnNames" value="false" />
 			<property name="useColumnIndexes" value="true" />
 		</table>
-	
+	 
 	</context>
 </generatorConfiguration>

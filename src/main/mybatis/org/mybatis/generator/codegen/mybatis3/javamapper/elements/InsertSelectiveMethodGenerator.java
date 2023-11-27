@@ -24,13 +24,14 @@ import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
+
 /**
- * 
- * @author Jeff Butler
- * 
+ * 选择性插入方法
+ * @author julong
+ * @date 2023年11月25日 上午10:14:07
+ * @desc 
  */
-public class InsertSelectiveMethodGenerator extends
-        AbstractJavaMapperMethodGenerator {
+public class InsertSelectiveMethodGenerator extends AbstractJavaMapperMethodGenerator {
 
     public InsertSelectiveMethodGenerator() {
         super();

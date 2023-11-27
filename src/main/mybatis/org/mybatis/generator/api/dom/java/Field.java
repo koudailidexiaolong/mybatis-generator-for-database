@@ -18,7 +18,13 @@ package org.mybatis.generator.api.dom.java;
 import org.mybatis.generator.api.dom.OutputUtilities;
 
 public class Field extends JavaElement {
+	/**
+	 * 类型
+	 */
     private FullyQualifiedJavaType type;
+    /**
+     * 名称
+     */
     private String name;
     private String initializationString;
     private boolean isTransient;

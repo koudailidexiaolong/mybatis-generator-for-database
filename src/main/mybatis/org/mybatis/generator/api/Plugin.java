@@ -854,6 +854,7 @@ public interface Plugin {
      */
     boolean clientUpdateByPrimaryKeySelectiveMethodGenerated(Method method,
             Interface interfaze, IntrospectedTable introspectedTable);
+    
 
     /**
      * This method is called when the updateByPrimaryKeySelective method has
@@ -876,6 +877,8 @@ public interface Plugin {
     boolean clientUpdateByPrimaryKeySelectiveMethodGenerated(Method method,
             TopLevelClass topLevelClass, IntrospectedTable introspectedTable);
 
+    
+    
     /**
      * This method is called when the updateByPrimaryKeyWithBLOBs method has
      * been generated in the client interface.
@@ -1510,6 +1513,7 @@ public interface Plugin {
      */
     boolean sqlMapUpdateByPrimaryKeySelectiveElementGenerated(
             XmlElement element, IntrospectedTable introspectedTable);
+  
 
     /**
      * This method is called when the updateByPrimaryKeyWithBLOBs element is

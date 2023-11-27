@@ -88,8 +88,9 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         addSelectByExampleWithBLOBsElement(answer);
         addSelectByExampleWithoutBLOBsElement(answer);
         addSelectByPrimaryKeyElement(answer);
-        //TODO 查询多条件
+        //TODO 全字段查询方法
         addSelectBySelectiveElement(answer);
+        //TODO 全字段统计方法
         addSelectCountBySelectiveElement(answer);
         
         

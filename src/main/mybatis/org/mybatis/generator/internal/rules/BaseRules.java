@@ -176,6 +176,7 @@ public abstract class BaseRules implements Rules {
 
         return rc;
     }
+   
 
     /**
      * Implements the rule for generating the delete by primary key SQL Map

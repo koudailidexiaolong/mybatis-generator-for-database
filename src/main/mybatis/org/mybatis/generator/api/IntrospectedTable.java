@@ -38,17 +38,21 @@ import org.mybatis.generator.internal.rules.ConditionalModelRules;
 import org.mybatis.generator.internal.rules.FlatModelRules;
 import org.mybatis.generator.internal.rules.HierarchicalModelRules;
 import org.mybatis.generator.internal.rules.Rules;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Base class for all code generator implementations. This class provides many
  * of the housekeeping methods needed to implement a code generator, with only
  * the actual code generation methods left unimplemented.
- * 数据库表
+ *  数据库表
  * @author Jeff Butler
  * 
  */
 public abstract class IntrospectedTable {
 
+	private static final Logger logger = LoggerFactory.getLogger(IntrospectedTable.class);
+	
     public enum TargetRuntime {
         IBATIS2, 
         MYBATIS3,
@@ -98,6 +102,7 @@ public abstract class IntrospectedTable {
         ATTR_UPDATE_BY_EXAMPLE_WITH_BLOBS_STATEMENT_ID,
         ATTR_UPDATE_BY_PRIMARY_KEY_STATEMENT_ID,
         ATTR_UPDATE_BY_PRIMARY_KEY_SELECTIVE_STATEMENT_ID,
+        
         ATTR_UPDATE_BY_PRIMARY_KEY_WITH_BLOBS_STATEMENT_ID,
         ATTR_BASE_RESULT_MAP_ID,
         ATTR_RESULT_MAP_WITH_BLOBS_ID,
@@ -567,6 +572,8 @@ public abstract class IntrospectedTable {
         setUpdateByExampleSelectiveStatementId("updateByExampleSelective"); //$NON-NLS-1$
         setUpdateByExampleWithBLOBsStatementId("updateByExampleWithBLOBs"); //$NON-NLS-1$
         setUpdateByPrimaryKeyStatementId("updateByPrimaryKey"); //$NON-NLS-1$
+        
+        
         setUpdateByPrimaryKeySelectiveStatementId("updateByPrimaryKeySelective"); //$NON-NLS-1$
         setUpdateByPrimaryKeyWithBLOBsStatementId("updateByPrimaryKeyWithBLOBs"); //$NON-NLS-1$
         setBaseResultMapId("BaseResultMap"); //$NON-NLS-1$
@@ -608,6 +615,7 @@ public abstract class IntrospectedTable {
     public void setUpdateByPrimaryKeySelectiveStatementId(String s) {
         internalAttributes.put(InternalAttribute.ATTR_UPDATE_BY_PRIMARY_KEY_SELECTIVE_STATEMENT_ID,s);
     }
+    
 
     public void setUpdateByPrimaryKeyStatementId(String s) {
         internalAttributes.put(InternalAttribute.ATTR_UPDATE_BY_PRIMARY_KEY_STATEMENT_ID, s);
@@ -717,10 +725,17 @@ public abstract class IntrospectedTable {
         return internalAttributes.get(InternalAttribute.ATTR_UPDATE_BY_PRIMARY_KEY_WITH_BLOBS_STATEMENT_ID);
     }
 
+    /**
+     * 根据主键全字段更新
+     * @return
+     * @author julong
+     * @date 2023年11月25日 上午11:02:16
+     * @desc
+     */
     public String getUpdateByPrimaryKeySelectiveStatementId() {
         return internalAttributes.get(InternalAttribute.ATTR_UPDATE_BY_PRIMARY_KEY_SELECTIVE_STATEMENT_ID);
     }
-
+    
     public String getUpdateByPrimaryKeyStatementId() {
         return internalAttributes.get(InternalAttribute.ATTR_UPDATE_BY_PRIMARY_KEY_STATEMENT_ID);
     }
@@ -855,16 +870,21 @@ public abstract class IntrospectedTable {
         sb.setLength(0);
         sb.append(calculateJavaClientInterfacePackage());
         sb.append('.');
+        //判断是否包含 mapperName 
         if (stringHasValue(tableConfiguration.getMapperName())) {
             sb.append(tableConfiguration.getMapperName());
         } else {
+        	logger.debug("【JavaClient类生成器】-包名ObjectSubPackage：{}",fullyQualifiedTable.getDomainObjectSubPackage());
             if (stringHasValue(fullyQualifiedTable.getDomainObjectSubPackage())) {
                 sb.append(fullyQualifiedTable.getDomainObjectSubPackage());
                 sb.append('.');
             }
+            logger.debug("【JavaClient类生成器】-类名DomainObjectName：{}",fullyQualifiedTable.getDomainObjectName());
             sb.append(fullyQualifiedTable.getDomainObjectName());
-            sb.append("Mapper"); //$NON-NLS-1$
+            //TODO 此处修改类名后缀  Mapper 为  Dao 
+            sb.append("Dao"); //$NON-NLS-1$
         }
+        //设置
         setMyBatis3JavaMapperType(sb.toString());
 
         sb.setLength(0);
@@ -891,8 +911,7 @@ public abstract class IntrospectedTable {
     }
 
     protected String calculateJavaModelPackage() {
-        JavaModelGeneratorConfiguration config = context
-                .getJavaModelGeneratorConfiguration();
+        JavaModelGeneratorConfiguration config = context.getJavaModelGeneratorConfiguration();
 
         StringBuilder sb = new StringBuilder();
         sb.append(config.getTargetPackage());
@@ -971,6 +990,8 @@ public abstract class IntrospectedTable {
      */
     protected String calculateMyBatis3XmlMapperFileName() {
         StringBuilder sb = new StringBuilder();
+        
+        //判断是否存在自定义的文件名和类名
         if (stringHasValue(tableConfiguration.getMapperName())) {
             String mapperName = tableConfiguration.getMapperName();
             int ind = mapperName.lastIndexOf('.');
@@ -1169,8 +1190,7 @@ public abstract class IntrospectedTable {
     }
 
     public void setMyBatis3JavaMapperType(String mybatis3JavaMapperType) {
-        internalAttributes.put(InternalAttribute.ATTR_MYBATIS3_JAVA_MAPPER_TYPE,
-                mybatis3JavaMapperType);
+        internalAttributes.put(InternalAttribute.ATTR_MYBATIS3_JAVA_MAPPER_TYPE,mybatis3JavaMapperType);
     }
 
     public String getMyBatis3SqlProviderType() {

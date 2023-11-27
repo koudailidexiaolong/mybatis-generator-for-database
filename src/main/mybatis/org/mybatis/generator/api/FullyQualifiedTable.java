@@ -41,8 +41,18 @@ public class FullyQualifiedTable {
     private String runtimeCatalog;
     private String runtimeSchema;
     private String runtimeTableName;
+    /**
+     * 对象名称
+     * @author julong
+     * @date 2023年11月25日 下午2:48:16
+     */
     private String domainObjectName;
     private String domainObjectSubPackage;
+    /**
+     * 别名
+     * @author julong
+     * @date 2023年11月25日 下午2:48:24
+     */
     private String alias;
     private boolean ignoreQualifiersAtRuntime;
     private String beginningDelimiter;
@@ -197,9 +207,7 @@ public class FullyQualifiedTable {
         }
         addDelimiters(localTableName);
 
-        return composeFullyQualifiedTableName(localCatalog
-                .toString(), localSchema.toString(), localTableName.toString(),
-                '.');
+        return composeFullyQualifiedTableName(localCatalog.toString(), localSchema.toString(), localTableName.toString(),'.');
     }
 
     /**

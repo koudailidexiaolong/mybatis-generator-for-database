@@ -23,10 +23,12 @@ import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
 
+
 /**
- * 
- * @author Jeff Butler
- * 
+ * 根据主键查询数据
+ * @author julong
+ * @date 2023年11月25日 下午2:58:05
+ * @desc 
  */
 public class SelectByPrimaryKeyElementGenerator extends AbstractXmlElementGenerator {
 
@@ -56,8 +58,7 @@ public class SelectByPrimaryKeyElementGenerator extends AbstractXmlElementGenera
             if (introspectedTable.getPrimaryKeyColumns().size() > 1) {
                 parameterType = "map"; //$NON-NLS-1$
             } else {
-                parameterType = introspectedTable.getPrimaryKeyColumns().get(0)
-                        .getFullyQualifiedJavaType().toString();
+                parameterType = introspectedTable.getPrimaryKeyColumns().get(0).getFullyQualifiedJavaType().toString();
             }
         }
 
@@ -86,8 +87,7 @@ public class SelectByPrimaryKeyElementGenerator extends AbstractXmlElementGenera
         answer.addElement(new TextElement(sb.toString()));
 
         boolean and = false;
-        for (IntrospectedColumn introspectedColumn : introspectedTable
-                .getPrimaryKeyColumns()) {
+        for (IntrospectedColumn introspectedColumn : introspectedTable.getPrimaryKeyColumns()) {
             sb.setLength(0);
             if (and) {
                 sb.append("  and "); //$NON-NLS-1$

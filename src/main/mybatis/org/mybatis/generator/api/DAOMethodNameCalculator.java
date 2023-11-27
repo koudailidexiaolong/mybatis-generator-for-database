@@ -151,8 +151,7 @@ public interface DAOMethodNameCalculator {
      *            the introspected table
      * @return the calculated name
      */
-    String getUpdateByExampleSelectiveMethodName(
-            IntrospectedTable introspectedTable);
+    String getUpdateByExampleSelectiveMethodName(IntrospectedTable introspectedTable);
 
     /**
      * Calculates and returns a name for the update by example with BLOBs method.
@@ -161,8 +160,7 @@ public interface DAOMethodNameCalculator {
      *            the introspected table
      * @return the calculated name
      */
-    String getUpdateByExampleWithBLOBsMethodName(
-            IntrospectedTable introspectedTable);
+    String getUpdateByExampleWithBLOBsMethodName(IntrospectedTable introspectedTable);
 
     /**
      * Calculates and returns a name for the update by example without BLOBs method.
@@ -171,6 +169,5 @@ public interface DAOMethodNameCalculator {
      *            the introspected table
      * @return the calculated name
      */
-    String getUpdateByExampleWithoutBLOBsMethodName(
-            IntrospectedTable introspectedTable);
+    String getUpdateByExampleWithoutBLOBsMethodName(IntrospectedTable introspectedTable);
 }

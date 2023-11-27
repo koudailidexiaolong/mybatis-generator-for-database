@@ -57,6 +57,7 @@ public class SelectBySelectiveMethodGenerator extends AbstractJavaMapperMethodGe
         importedTypes.add(listType);
         //组装参数名
         String paramName = parameterType.getShortNameWithoutTypeArguments();
+        //获取参数名称
         String record = FullyQualifiedJavaType.getParameterAlias(paramName);
         method.addParameter(new Parameter(parameterType, record)); //$NON-NLS-1$
 

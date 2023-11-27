@@ -75,7 +75,7 @@ public class MyBatisGenerator {
 
     /**
      * Constructs a MyBatisGenerator object.
-     * 
+     *  解析配置文件
      * @param configuration
      *            The configuration for this invocation
      * @param shellCallback
@@ -314,8 +314,7 @@ public class MyBatisGenerator {
                             targetFile.getAbsolutePath()));
                 } else {
                     source = gjf.getFormattedContent();
-                    targetFile = getUniqueFileName(directory, gjf
-                            .getFileName());
+                    targetFile = getUniqueFileName(directory, gjf.getFileName());
                     warnings.add(getString(
                             "Warning.2", targetFile.getAbsolutePath())); //$NON-NLS-1$
                 }

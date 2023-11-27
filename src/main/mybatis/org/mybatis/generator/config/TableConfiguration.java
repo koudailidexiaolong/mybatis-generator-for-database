@@ -88,13 +88,27 @@ public class TableConfiguration extends PropertyHolder {
 
     private String catalog;
 
+    /**
+     * 数据库方言
+     * @author julong
+     * @date 2023年11月25日 下午2:20:07
+     */
     private String schema;
 
-    //表名
+    /**
+     * 表名
+     * @author julong
+     * @date 2023年11月25日 下午2:19:38
+     */
     private String tableName;
 
     private String domainObjectName;
 
+    /**
+     * 别名
+     * @author julong
+     * @date 2023年11月25日 下午2:19:44
+     */
     private String alias;
 
     private ModelType modelType;
@@ -111,7 +125,11 @@ public class TableConfiguration extends PropertyHolder {
 
     private boolean isAllColumnDelimitingEnabled;
 
-    //指定类名
+    /**
+     * 指定类名
+     * @author julong
+     * @date 2023年11月25日 下午2:19:26
+     */
     private String mapperName;
     
     private String sqlProviderName;
@@ -126,6 +144,7 @@ public class TableConfiguration extends PropertyHolder {
         columnOverrides = new ArrayList<ColumnOverride>();
         ignoredColumns = new HashMap<IgnoredColumn, Boolean>();
 
+        //方法生成 默认生成
         insertStatementEnabled = true;
         selectByPrimaryKeyStatementEnabled = true;
         selectBySelectiveStatementEnabled = true;
@@ -166,7 +185,8 @@ public class TableConfiguration extends PropertyHolder {
     public boolean isUpdateByPrimaryKeyStatementEnabled() {
         return updateByPrimaryKeyStatementEnabled;
     }
-
+    
+ 
     public void setUpdateByPrimaryKeyStatementEnabled(
             boolean updateByPrimaryKeyStatementEnabled) {
         this.updateByPrimaryKeyStatementEnabled = updateByPrimaryKeyStatementEnabled;

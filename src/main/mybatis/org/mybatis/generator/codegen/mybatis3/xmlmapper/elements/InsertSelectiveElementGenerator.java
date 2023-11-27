@@ -29,7 +29,7 @@ import org.mybatis.generator.internal.DefaultCommentGenerator;
 
 
 /**
- * 
+ * 根据输入参数选择性更新数据
  * @author Jeff Butler
  * xml新增方法生成类
  */

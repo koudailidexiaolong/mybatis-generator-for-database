@@ -19,7 +19,7 @@ import org.mybatis.generator.api.dom.java.CompilationUnit;
 
 /**
  * The Class GeneratedJavaFile.
- *
+ * 生成java 文件的方法
  * @author Jeff Butler
  */
 public class GeneratedJavaFile extends GeneratedFile {
